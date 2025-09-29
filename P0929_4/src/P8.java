@@ -16,5 +16,19 @@ public class P8 {
         // double v1 = 10; // type mismatch promotion으로 허용이지만 정수 리터럴을 실수에 넣을 필요가 없다.
         double v1 = 10.0;
         int v2 = (int)30.0;
+
+        float f1 = 10.0f;
+        long f2 = 9012830180183L;
+        f1 = f2; // 4byte float이어도 long보다 우선순위가 높다.
+        //f2 = f1; // mismatch from float to long
+
+        int t1 = 65;
+        char t2 = 65;
+        char t3 = 'a';
+
+        // println은 타입마다 다르게 실행한다.
+        System.out.println(t1);
+        System.out.println(t2);
+        System.out.println((int)t3);
     }
 }
