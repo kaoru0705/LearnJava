@@ -1,0 +1,55 @@
+JAVA에서 ctrl s 를 누르는 순간 컴파일러가 실행?
+bin - .class 바이트 코드 = 컴파일러가 실행해서 만들어진 file JVM으로만 실행할 수 있는 파일
+src - .java = text file
+/* */ - 이건 잘 안 씀
+ctrl /
+
+1. JDK 21 LTS 설치 시작
+
+Amazon Corretto 21
+https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html
+
+Windows x64 zip file download 
+msi는 위험할 수 있음.
+
+DevTools folder 생성
+이런 폴더명에 다 몰아서 개발환경을 다운한다.
+
+폴더 - 보기 - 확장자명 표시
+
+jdk - bin - java.exe(java VM), javac.exe(Compiler)
+JAVA_으로 세팅하는 방법과 안 하는 방법이 있다.
+
+2. 코드 편집기 다운 시작 IDE(통합 개발 환경)
+(1) 이클립스 (2) 인텔리제이 (3) VSCode (4) 메모장
+
+이클립스 - JAVA기반 AI 시대 비효율 20%
+인텔리제이 - C기반 80%
+VSCode - JAVA를 제외한 언어는 VSCode로 통일 추세
+바이브 코딩 특화
+copilot - github 연결 가능
+
+
+VSCode 실행
+Extension - Extension Pack for Java 설치
+
+맥은 이걸 안 해도 된다.
+ctrl shift p 
+preferences - open user setting(JSON)
+
+{
+    "editor.inlayHints.enabled": "off",
+    "editor.mouseWheelZoom": true,
+    "java.configuration.runtimes": [
+        {
+            "name":"JavaSE-21",
+            "path": "C:\\DevTools\\amazon-corretto-21.0.8.9.1-windows-x64-jdk\\jdk21.0.8_9",
+            "default": true
+        }
+    ]
+}
+
+3
+ctrl shift p - java create java project - 폴더 javaworkspace 클릭 - select the project location - names folder - JAVA PROJECTS를 맨위로 올리기 
+java project - folder name - src - +버튼 누르고 CLASS - class name
+psvm tab - public static void main
