@@ -12,5 +12,6 @@ public class P10 {
         // ! 단항 연산자가 보통 많이 빠름
         boolean r3 = !(a > 5) || b > 5;
 
+        
     }
 }
