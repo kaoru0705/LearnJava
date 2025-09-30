@@ -3,7 +3,7 @@ bin - .class 바이트 코드 = 컴파일러가 실행해서 만들어진 file J
 src - .java = text file
 /* */ - 이건 잘 안 씀
 ctrl /
-
+Workspace - JavaWorkspace
 1. JDK 21 LTS 설치 시작
 
 Amazon Corretto 21
