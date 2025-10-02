@@ -104,7 +104,7 @@ public class Casino {
                 System.out.print("입력 > ");
                 String strUserLotto = scanner.nextLine();
 
-                while(strUserLotto.length() != 6 && strUserLotto.compareTo("000000") < 0 && strUserLotto.compareTo("999999") > 0) {
+                while(strUserLotto.length() != 6 || strUserLotto.compareTo("000000") < 0 || strUserLotto.compareTo("999999") > 0) {
                     System.out.println("숫자를 다시 입력하세요");
                     System.out.print("입력 > ");
                     strUserLotto = scanner.nextLine();
@@ -115,11 +115,23 @@ public class Casino {
                     while(strComputerLotto.contains(strRandomNum)) {
                         strRandomNum = (int)(Math.random() * 10) + "";
                     }
-                    strUserLotto = strUserLotto + strRandomNum;
+                    strComputerLotto = strComputerLotto + strRandomNum;
                 }
 
                 System.out.println(strComputerLotto + "가 나왔습니다.");
-                
+                int correctCount = 0;
+                for(int i = 0; i < 6; i++) {
+                    if(strComputerLotto.contains(strUserLotto.charAt(i) + "")) {
+                        correctCount++;
+                    }
+                }
+                if(correctCount < 4) {
+                    System.out.println("당신은 졌습니다.");
+                } else {
+                    System.out.println("당신은 이겼습니다.");
+                    System.out.println("맞춘 숫자: " + correctCount);
+                    coin += (bet * (correctCount - 2));
+                }
 
             } else if (command.equals("4")) {
                 System.out.println("------- 업앤다운 -------");
