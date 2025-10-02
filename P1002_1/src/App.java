@@ -77,14 +77,39 @@ public class App {
 			}else if(command.equals("2")) {
 				System.out.println("[학생 목록 출력 로직 시작]");
 				// Q. '점수를 기준으로 내림차순으로 출력할까요?(Y/n) > ' 
+                System.out.print("점수를 기준으로 내림차순으로 출력할까요?(y/n) > ");
+                String yesOrNo = scn.nextLine();
+                int[] scoreIndexArr = new int[count];
+                for(int i = 0; i < count; i++) {
+                        scoreIndexArr[i] = i;
+                }
+                if(yesOrNo.equals("Y") || yesOrNo.equals("y")) {
+                    int[] scoreCopyList = new int[count];
+                    for(int i = 0; i < count; i++) {
+                        scoreCopyList[i] = scoreList[i];
+                    }
+                    for(int x = 0; x < count - 1; x++) {
+                        for(int y = 0; y < count - 1 - x; y++) {
+                            if(scoreCopyList[y] < scoreCopyList[y + 1]) {
+                                int temp = scoreCopyList[y];
+                                scoreCopyList[y] = scoreCopyList[y+1];
+                                scoreCopyList[y+1] = temp;
+
+                                int tempIndex = scoreIndexArr[y];
+                                scoreIndexArr[y] = scoreIndexArr[y+1];
+                                scoreIndexArr[y+1] = tempIndex;
+                            }
+                        }
+                    }
+                }
 				
 				for(int i = 0; i < count ; i++) {
 					String text = "이름: ";
-					text += nameList[i];
+					text += nameList[scoreIndexArr[i]];
 					text += ", 나이: ";
-					text += ageList[i];
+					text += ageList[scoreIndexArr[i]];
 					text += ", 점수: ";
-					text += scoreList[i];
+					text += scoreList[scoreIndexArr[i]];
 					System.out.println(text);
 				}
 				
