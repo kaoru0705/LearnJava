@@ -94,7 +94,33 @@ public class Casino {
                 } else System.out.println("당신은 졌습니다.");
                 
             } else if (command.equals("3")) {
-                break;
+                System.out.println("------- 로또 게임 -------");
+                System.out.print("배팅액 입력(남은 돈:"+coin+") > ");
+                int bet = Integer.parseInt(scanner.nextLine());
+                coin -= bet;
+                
+                System.out.println("0 ~ 9 사이에 서로 다른 숫자를 6개 입력하세요.");
+                System.out.println("4자리 이상 맞추실 시 금액이 제공됩니다.");
+                System.out.print("입력 > ");
+                String strUserLotto = scanner.nextLine();
+
+                while(strUserLotto.length() != 6 && strUserLotto.compareTo("000000") < 0 && strUserLotto.compareTo("999999") > 0) {
+                    System.out.println("숫자를 다시 입력하세요");
+                    System.out.print("입력 > ");
+                    strUserLotto = scanner.nextLine();
+                }
+                String strComputerLotto = "";
+                for(int i = 0; i < 6; i++) {
+                    String strRandomNum = (int)(Math.random() * 10) + "";
+                    while(strComputerLotto.contains(strRandomNum)) {
+                        strRandomNum = (int)(Math.random() * 10) + "";
+                    }
+                    strUserLotto = strUserLotto + strRandomNum;
+                }
+
+                System.out.println(strComputerLotto + "가 나왔습니다.");
+                
+
             } else if (command.equals("4")) {
                 System.out.println("------- 업앤다운 -------");
                 System.out.println("숫자는 0~46사이의 값이 있습니다.");
