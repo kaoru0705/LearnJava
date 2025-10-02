@@ -104,11 +104,22 @@ public class Casino {
                 System.out.print("입력 > ");
                 String strUserLotto = scanner.nextLine();
 
-                while(strUserLotto.length() != 6 || strUserLotto.compareTo("000000") < 0 || strUserLotto.compareTo("999999") > 0) {
-                    System.out.println("숫자를 다시 입력하세요");
-                    System.out.print("입력 > ");
-                    strUserLotto = scanner.nextLine();
+                while(true) {
+                    boolean isSameNumber = false;
+                    for(int i = 0; i <= 9; i++) {
+                        String regex = i + "";
+                        if(strUserLotto.contains(regex) && strUserLotto.replaceAll(regex, "").length() != 5) {
+                            isSameNumber = true;
+                            break;
+                        }
+                    }
+                    if(strUserLotto.length() != 6 || strUserLotto.compareTo("000000") < 0 || strUserLotto.compareTo("999999") > 0 || isSameNumber) {
+                        System.out.println("다시 0 ~ 9 사이에 서로 다른 숫자를 6개 입력하세요.");
+                        System.out.print("입력 > ");
+                        strUserLotto = scanner.nextLine();
+                    } else break;
                 }
+                
                 String strComputerLotto = "";
                 for(int i = 0; i < 6; i++) {
                     String strRandomNum = (int)(Math.random() * 10) + "";
