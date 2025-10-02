@@ -9,7 +9,7 @@ public class P2 {
         // scores 자체는 참조 타입 '변수'이므로 stack에 있으며 heap 영역에 메모리 주소를 참조하고 있다. 201p
 
         int[] scores = new int[10];
-        // [] 배열 접근 연산자 다른 접근 연산자로 .이 있다.
+        // [] 배열 접근 연산자 다른 접근 연산자로 .이 있다. 
         scores[0] = 77;
         scores[5] = 99;
         scores[10] = 99;
