@@ -52,7 +52,47 @@ public class Casino {
                 }
                 
             } else if (command.equals("2")) {
-                break;
+                System.out.println("------- 가위바위보 -------");
+                System.out.print("배팅액 입력(남은 돈:"+coin+") > ");
+                int bet = Integer.parseInt(scanner.nextLine());
+                
+                coin -= bet;
+                
+                System.out.println("가위 바위 보 중에 하나를 고르세요 > ");
+                System.out.print("입력 > ");
+                String strUserSelectedHand = scanner.nextLine();
+                while(!strUserSelectedHand.equals("가위") && !strUserSelectedHand.equals("바위") && !strUserSelectedHand.equals("보")) {
+                    System.out.print("입력이 잘못됐습니다. 다시 입력해 주세요 > ");
+                    strUserSelectedHand = scanner.nextLine();
+                }
+
+                int computerSelectedHand = (int)(Math.random() * 3);
+                String strComputerSelectedHand = "";
+                if(computerSelectedHand == 0) strComputerSelectedHand = "가위";
+                else if(computerSelectedHand == 1) strComputerSelectedHand = "바위";
+                else if(computerSelectedHand == 2) strComputerSelectedHand = "보";
+                else System.out.println("[Log]Error");
+
+                System.out.println(strComputerSelectedHand + "가 나왔습니다.");
+                
+                boolean isWinner = true;
+                if(strUserSelectedHand.equals(strComputerSelectedHand)) {
+                    System.out.println("무승부입니다.");
+                    System.out.println("배팅액에 절반을 돌려 드리겠습니다.");
+                    coin += bet / 2;
+                    continue;
+                } else if(strUserSelectedHand.equals("가위")) {
+                    if(strComputerSelectedHand.equals("바위")) isWinner = false;
+                } else if(strUserSelectedHand.equals("바위")) {
+                    if(strComputerSelectedHand.equals("보")) isWinner = false;
+                } else if(strUserSelectedHand.equals("보")) {
+                    if(strComputerSelectedHand.equals("가위")) isWinner = false;
+                }
+                if(isWinner) {
+                    System.out.println("당신은 이겼습니다.");
+                    coin += bet * 2;
+                } else System.out.println("당신은 졌습니다.");
+                
             } else if (command.equals("3")) {
                 break;
             } else if (command.equals("4")) {
