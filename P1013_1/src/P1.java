@@ -1,9 +1,14 @@
+import java.util.Scanner;
+
 public class P1 {
     public static void main(String[] args) {
-        int a[] = {1, 2, 3, 4, 5};
+        // 자동 완성, 일반 편집 단축키
+        Scanner scanner = new Scanner(System.in);
+        int number = Integer.parseInt(scanner.nextLine());
         
-        for(int e: a) {
-            System.out.println(e);
-        }
+        // ctrl + alt + up down : Multi Cursor
+        System.out.println("안녕하세요");
+        System.out.println("안녕하세요");
+        
     }
 }
