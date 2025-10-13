@@ -1,0 +1,20 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ],
+
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            // PowerShell 시작 시 chcp 65001 명령을 실행하도록 인수를 추가
+            "args": [
+                "-NoExit",
+                "/c",
+                "chcp 65001"
+            ]
+        }
+    },
+}
