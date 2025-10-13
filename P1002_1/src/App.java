@@ -5,7 +5,7 @@ public class App {
 	public static void main(String[] args) {
 		// 프로그래밍 구현 순서: 요구사항 분석(정의), 데이터 설계, 코드 구조, 구현, 테스팅 
 		Scanner scn = new Scanner(System.in);
-		
+        
 		String[] nameList = new String[5];
 		int[] ageList = new int[5];
 		int[] scoreList = new int[5];
@@ -89,7 +89,8 @@ public class App {
                         scoreCopyList[i] = scoreList[i];
                     }
                     for(int x = 0; x < count - 1; x++) {
-                        for(int y = 0; y < count - 1 - x; y++) {
+                        int minValue = x;
+                        for(int y = x; y < count - 1 - x; y++) {
                             if(scoreCopyList[y] < scoreCopyList[y + 1]) {
                                 int temp = scoreCopyList[y];
                                 scoreCopyList[y] = scoreCopyList[y+1];
