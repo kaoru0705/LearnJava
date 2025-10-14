@@ -1,4 +1,5 @@
 public class P5 {
+    
     public static void main(String[] args) {
         Student3 s1 = new Student3("철수");
         Student3 s2 = new Student3("영희");
