@@ -1,14 +1,18 @@
 package P10;
 
+import P11.Pppp;
+
 public class App {
     public static void main(String[] args) {
+        Pppp p = new Pppp();
+        p.a = 5;
         StudentsDto s1 = new StudentsDto();
         s1.setName("철수");
         System.out.println(s1.getName());
     }
 }
 
-// Dto = 기능 없음. 데이터 묶는 용도의 클래스
+// Dto = 기능 없음. 데이터 묶는 용도의 클래스 Data Transfer Object
 class StudentsDto {
     private String name;
     private int age;
