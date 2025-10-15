@@ -1,5 +1,5 @@
 public class P5 {
-    
+
     public static void main(String[] args) {
         Student3 s1 = new Student3("철수");
         Student3 s2 = new Student3("영희");
@@ -10,6 +10,7 @@ public class P5 {
         s2.study(1);
         s1.study(5);
         s2.study(1);
+        int a = 10;
 
         s1.printResult();
         s2.printResult();
