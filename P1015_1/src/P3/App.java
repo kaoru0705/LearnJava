@@ -9,14 +9,13 @@ public class App {
 
         String value = ioManager.input("값 입력 > ");
         ioManager.output("입력된 값 = " + value);
+        value.toUpperCase();
 
-
-        int inputStart = 77;
-        int inputEnd = 1500;
+        int inputStart = ioManager.integerInput("정수 값 입력 > ");
+        int inputEnd = ioManager.integerInput("정수 값 입력 > ");
         System.out.println(calculator.SumFromTo(inputStart, inputEnd));
 
         
-
 
     }
 }
@@ -33,6 +32,18 @@ class IoManager {
 
     void output(String text) {
         System.out.println(text);
+    }
+
+    int integerInput(String text) {
+
+        while(!scanner.hasNextInt())
+        {
+            System.out.print(text);
+            scanner.nextLine();
+        }
+        int intgerValue = Integer.parseInt(scanner.nextLine());
+
+        return intgerValue;
     }
 }
 
