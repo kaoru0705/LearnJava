@@ -10,6 +10,21 @@ public class MyString {
         return string.length;
     }
 
+    MyString() {
+
+    }
+
+    MyString(String param) {
+        this.setString(param);
+    }
+
+    MyString(int param) {
+        // string = String.valueOf(param).getBytes().clone();
+        String tmp = String.format("%d", param);
+        // this.setString(tmp);
+        string = tmp.getBytes();
+    }
+
     public void setString(String param) {
         string = param.getBytes().clone();
     }
