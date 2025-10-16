@@ -22,5 +22,11 @@ public class App {
 
         s1.setString("Bye");
         System.out.println(s2.getString()); // 얕은 복사
+
+        MyString s3 = new MyString("Hi");
+        MyString s4 = new MyString(s3);
+        s3.setString("HaHaHaHa");
+
+        System.out.println(s4.getString());
     }
 }
