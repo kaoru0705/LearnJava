@@ -25,6 +25,25 @@ public class MyString {
         string = tmp.getBytes();
     }
 
+    MyString(MyString rhs) {
+        string = new byte[rhs.string.length];
+        deepCopy(rhs.string);
+    }
+
+    private void deepCopy(byte[] copy) {
+        for (int i = 0; i < copy.length; i++) {
+            string[i] = copy[i];
+        }
+    }
+
+    // MyString(MyString rhs) {
+    // deepCopy(rhs);
+    // }
+
+    // private void deepCopy(MyString rhs) {
+    // this.string = rhs.string.clone();
+    // }
+
     public void setString(String param) {
         string = param.getBytes().clone();
     }
