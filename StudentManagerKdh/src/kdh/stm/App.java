@@ -1,6 +1,7 @@
 package kdh.stm;
 
 import java.util.*;
+
 public class App {
     public static void main(String[] args) throws Exception {
         // 주제: 학생 정보 관리 프로그램
@@ -14,13 +15,13 @@ public class App {
         System.out.println("          개발자: 강동훈    ");
         System.out.println("=============================");
 
-        List <String> nameList = new ArrayList<>();
-        List <Integer> ageList = new ArrayList<>();
-        List <Integer> scoreList = new ArrayList<>();
+        List<String> nameList = new ArrayList<>();
+        List<Integer> ageList = new ArrayList<>();
+        List<Integer> scoreList = new ArrayList<>();
 
         int count = 0;
 
-        while(true) {
+        while (true) {
             System.out.println("****메뉴****");
             System.out.println("1. 학생 정보 등록");
             System.out.println("2. 학생 정보 목록");
@@ -32,18 +33,18 @@ public class App {
             System.out.print("명령어 입력 >");
             String command = scanner.nextLine();
 
-            if(command.equals("0")) {
+            if (command.equals("0")) {
                 System.out.println("학생 관리 프로그램을 종료합니다.");
                 break;
             }
 
-            if(command.equals("1")) {
+            if (command.equals("1")) {
                 System.out.println("[테스트 로그] 학생 등록 로직 수행");
 
                 System.out.print("이름 입력 > ");
                 String name = scanner.nextLine();
 
-                while(name.equals("")) {
+                while (name.equals("")) {
                     System.out.print("이름에 제대로된 문자열을 입력하세요. > ");
                     name = scanner.nextLine();
                 }
@@ -54,21 +55,21 @@ public class App {
 
                 // String strAge = null;
                 // while(true)
-                // {   
-                //     boolean isIntger = true;
+                // {
+                // boolean isIntger = true;
 
-                //     strAge = scanner.nextLine();
-                //     for (int strIndex = 0 ; strIndex < strAge.length(); strIndex++) {
-                //         if(strAge.charAt(strIndex) < '0' || strAge.charAt(strIndex) > '9') {
-                //             isIntger = false;
-                //             System.out.print("나이를 다시 입력하세요. > ");
-                //             break;
-                //         }
-                //     }
+                // strAge = scanner.nextLine();
+                // for (int strIndex = 0 ; strIndex < strAge.length(); strIndex++) {
+                // if(strAge.charAt(strIndex) < '0' || strAge.charAt(strIndex) > '9') {
+                // isIntger = false;
+                // System.out.print("나이를 다시 입력하세요. > ");
+                // break;
+                // }
+                // }
 
-                //     if(strAge.length() != 0 && isIntger == true) {
-                //         break;
-                //     }
+                // if(strAge.length() != 0 && isIntger == true) {
+                // break;
+                // }
                 // }
                 // ageList[count] = Integer.parseInt(strAge);
 
@@ -89,55 +90,55 @@ public class App {
                 scoreList.add(Integer.parseInt(scanner.nextLine()));
 
                 count++;
-            } else if(command.equals("2")) {
+            } else if (command.equals("2")) {
                 System.out.println("[테스트 로그] 학생 목록 로직 수행");
-                for(int index = 0; index < count; index++) {
-                    System.out.println("학생의 이름: " + nameList[index] + " 나이: " + ageList[index] + " 점수: " + scoreList[index]);
+                for (int index = 0; index < count; index++) {
+                    System.out.println("학생의 이름: " + nameList.get(index) + " 나이: " + ageList.get(index) + " 점수: "
+                            + scoreList.get(index));
                 }
-            } else if(command.equals("3")) {
+            } else if (command.equals("3")) {
                 System.out.println("[테스트 로그] 학생 검색 로직");
                 System.out.print("검색할 학생의 이름: > ");
                 String searchName = scanner.nextLine();
                 int searchCount = 0;
-                System.out.println("이름이 " + searchName + "인 학생은 ");
-                for(int searchIndex = 0; searchIndex < count; searchIndex++) {
-                    if(nameList[searchIndex].equals(searchName)) {
-                        System.out.println("\t나이: " + ageList[searchIndex] + " 점수: " + scoreList[searchIndex]);
+                System.out.println("이름에 " + searchName + "이 포함되는 학생은 ");
+                for (int searchIndex = 0; searchIndex < count; searchIndex++) {
+                    if (nameList.get(searchIndex).contains(searchName)) {
+                        System.out.println("\t이름: " + nameList.get(searchIndex) + " 나이: "
+                                + ageList.get(searchIndex) + " 점수: " + scoreList.get(searchIndex));
                         searchCount++;
                     }
                 }
-                if(searchCount == 0) {
+                if (searchCount == 0) {
                     System.out.println("등록된 학생이 없습니다.");
                 } else {
-                    System.out.println("으로 " + searchCount + "명 존재합니다.");
+                    System.out.println("으로 총 " + searchCount + "명 있습니다.");
                 }
-            } else if(command.equals("4")) {
+            } else if (command.equals("4")) {
                 System.out.println("[테스트 로그] 학생 삭제 로직");
                 System.out.print("삭제할 이름은? > ");
                 String deletedName = scanner.nextLine();
                 boolean isDelete = false;
                 boolean isCancel = false;
                 for (int nameIndex = 0; nameIndex < count; nameIndex++) {
-                    if(nameList[nameIndex].equals(deletedName)) {
+                    if (nameList.get(nameIndex).equals(deletedName)) {
                         System.out.print("삭제할 이름을 찾았습니다.\n마지막으로 묻습니다. 정말 삭제하시겠습니까? (Y/N) > ");
                         String guest = scanner.nextLine();
-                        while(!guest.equals("n") && !guest.equals("N") && !guest.equals("y") && !guest.equals("Y")) {
+                        while (!guest.equals("n") && !guest.equals("N") && !guest.equals("y") && !guest.equals("Y")) {
                             System.out.print("(Y/N) 중 하나를 입력하세요. > ");
                             guest = scanner.nextLine();
                         }
-                        if(guest.equals("n") || guest.equals("N")) {
+                        if (guest.equals("n") || guest.equals("N")) {
                             System.out.println("삭제하지 않기로 했습니다.");
                             isCancel = true;
                             break;
                         }
                     }
 
-                    if(nameList[nameIndex].equals(deletedName)) {
-                        for(int deletedIndex = nameIndex; deletedIndex < count - 1; deletedIndex++) {
-                            nameList[deletedIndex] = nameList[deletedIndex + 1];
-                            ageList[deletedIndex] = ageList[deletedIndex + 1];
-                            ageList[deletedIndex] = scoreList[deletedIndex + 1];
-                        }
+                    if (nameList.get(nameIndex).equals(deletedName)) {
+                        nameList.remove(nameIndex);
+                        ageList.remove(nameIndex);
+                        scoreList.remove(nameIndex);
                         nameIndex--;
                         System.out.println("삭제되었습니다.");
                         count--;
@@ -145,10 +146,10 @@ public class App {
                     }
                 }
 
-                if(!isDelete && !isCancel) {
+                if (!isDelete && !isCancel) {
                     System.out.println("존재하지 않는 이름입니다.");
                 }
-            } else if(command.equals("5")) {
+            } else if (command.equals("5")) {
                 System.out.println("[테스트 로그] 학생 정보 수정 로직");
             } else {
                 System.out.println("번호를 잘못 입력하셨습니다.");
