@@ -81,7 +81,7 @@ public class App {
                 boolean isCancel = false;
                 for (int nameIndex = 0; nameIndex < count; nameIndex++) {
                     if (list.get(nameIndex).getName().equals(deletedName)) {
-                        String guest = IoManager.YesOrNoInput();
+                        String guest = IoManager.YesOrNoInput("삭제할 이름을 찾았습니다.\n마지막으로 묻습니다. 정말 삭제하시겠습니까? (Y/N) > ");
 
                         if (guest.toUpperCase().equals("N") || guest.toUpperCase().equals("NO")) {
                             IoManager.println("삭제하지 않기로 했습니다.");

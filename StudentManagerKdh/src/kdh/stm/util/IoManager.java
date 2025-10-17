@@ -26,8 +26,8 @@ public class IoManager {
         return Integer.parseInt(requireIntegerString(text));
     }
 
-    public static String YesOrNoInput() {
-        print("삭제할 이름을 찾았습니다.\n마지막으로 묻습니다. 정말 삭제하시겠습니까? (Y/N) > ");
+    public static String YesOrNoInput(String text) {
+        print(text);
 
         return requireYesOrNoString();
     }
