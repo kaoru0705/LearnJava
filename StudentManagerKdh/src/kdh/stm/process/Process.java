@@ -30,15 +30,15 @@ public class Process {
     private void process(String command) {
 
         if (command.equals("1")) {
-            service.createStudentInfo();
+            service.createStudentDto();
         } else if (command.equals("2")) {
-            service.displayAllStudentInfo();
+            service.displayAllList();
         } else if (command.equals("3")) {
-            service.searchStudentInfo();
+            service.searchStudentDto();
         } else if (command.equals("4")) {
-            service.deleteStudentInfo();
+            service.deleteStudentDto();
         } else if (command.equals("5")) {
-            service.updateStudentInfo();
+            service.updateStudentDto();
         } else {
             IoManager.println("번호를 잘못 입력하셨습니다.");
             IoManager.println("다시 입력 바랍니다.");

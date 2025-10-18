@@ -11,7 +11,7 @@ public class Repository {
         list.add(studentDto);
     }
 
-    public List<StudentDto> findAllStudentInfo() {
+    public List<StudentDto> findAll() {
         List<StudentDto> copyList = new ArrayList<>();
         for (StudentDto studentDto : list) {
             StudentDto copyStudentDto = new StudentDto(studentDto.getName(), studentDto.getAge(), studentDto.getScore());
@@ -21,11 +21,10 @@ public class Repository {
         return copyList;
     }
 
-    public List<StudentDto> findStudentInfoByNameContains(String searchName) {
+    public List<StudentDto> findByNameContains(String nameKeyword) {
         List<StudentDto> searchList = new ArrayList<>();
-
         for (StudentDto studentDto : list) {
-            if(studentDto.getName().contains(searchName)) {
+            if(studentDto.getName().contains(nameKeyword)) {
                 StudentDto copyStudentDto = new StudentDto(studentDto.getName(), studentDto.getAge(), studentDto.getScore());
                 searchList.add(copyStudentDto);
             }
@@ -34,7 +33,26 @@ public class Repository {
         return searchList;
     }
 
-    public void deleteStudentInfoByName() {
-        
+    public int deleteByName(String deleteName) {
+        int deleteCount = 0;
+        Iterator<StudentDto> iterator = list.iterator();
+        while(iterator.hasNext()) {
+            StudentDto studentDto = iterator.next();
+            if(studentDto.getName().equals(deleteName)) {
+                iterator.remove();
+                deleteCount++;
+            }
+        }
+        return deleteCount;
+    }
+
+    public boolean existsByName(String name) {
+        for (StudentDto studentDto: list) {
+            if(studentDto.getName().equals(name)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
