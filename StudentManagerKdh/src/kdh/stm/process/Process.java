@@ -1,9 +1,5 @@
 package kdh.stm.process;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import kdh.stm.dto.StudentDto;
 import kdh.stm.util.IoManager;
 import kdh.stm.service.Service;
 
