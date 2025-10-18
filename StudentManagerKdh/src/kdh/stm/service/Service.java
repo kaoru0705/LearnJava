@@ -50,13 +50,13 @@ public class Service {
 
     public void deleteStudentDto() {
         IoManager.println("[테스트 로그] 학생 삭제 로직");
-        String deleteName = IoManager.strInput("삭제할 이름은? > ");
+        String deleteName = IoManager.strInput("삭제할 학생의 이름은? > ");
         if(!repository.existsByName(deleteName)) {
             IoManager.println(deleteName + "는(은) 존재하지 않는 이름입니다.");
             return;
         }
         
-        String guest = IoManager.YesOrNoInput("삭제할 이름을 찾았습니다.\n마지막으로 묻습니다. 정말 삭제하시겠습니까? (Y/N) > ");
+        String guest = IoManager.YesOrNoInput("삭제할 이름을 발견했습니다.\n마지막으로 묻습니다. 정말 삭제하시겠습니까? (Y/N) > ");
 
         if(guest.toUpperCase().equals("Y") || guest.toUpperCase().equals("YES")) {
             int deleteCount = repository.deleteByName(deleteName);
@@ -69,6 +69,15 @@ public class Service {
 
     public void updateStudentDto() {
         IoManager.println("[테스트 로그] 학생 정보 수정 로직");
+        String updateName = IoManager.strInput("수정할 학생의 이름은? >");
+        if(!repository.existsByName(updateName)) {
+            IoManager.println(updateName + "는(은) 존재하지 않는 이름입니다.");
+            return;
+        }
+        IoManager.println("수정할 학생의 이름을 발견했습니다.\n 정보를 입력해주세요.");
+        int age = IoManager.integerInput("나이 > ");
+        int score = IoManager.integerInput("점수 > ");
+        repository.updateByName(updateName, age, score);
     }
 
 }

@@ -55,4 +55,16 @@ public class Repository {
 
         return false;
     }
+
+    public void updateByName(String updateName, int age, int score) {
+        Iterator<StudentDto> iterator = list.iterator();
+        while(iterator.hasNext()) {
+            StudentDto studentDto = iterator.next();
+            if(studentDto.getName().equals(updateName)) {
+                studentDto.setAge(age);
+                studentDto.setScore(score);
+                return;
+            }
+        }
+    }
 }
