@@ -44,5 +44,6 @@ public class Main {
         } catch(Exception e) {
             System.out.println(e);
         }
+        MyResource res = new MyResource("C");
     }
 }
