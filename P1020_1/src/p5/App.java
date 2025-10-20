@@ -17,6 +17,11 @@ public class App {
         CCC ref3 = new CCC();
         ref3.a1 = 10;
         ref3.c1 = 10;
+
+        DDD ref4 = new DDD();
+        ref4.a1 = 10;
+        ref4.b1 = 10;
+        ref4.d1 = 10;
     }
 }
 
@@ -37,4 +42,9 @@ class BBB extends AAA {
 class CCC extends AAA {
     int c1;
     int c2;
+}
+
+class DDD extends BBB {
+    int d1;
+    int d2;
 }
