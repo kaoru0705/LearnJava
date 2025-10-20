@@ -15,6 +15,7 @@ public class App {
         unitList[4] = new Tank();
         unitList[5] = new SCV();
 
+        // 아래가 핵심... 상속 - 다형성 - 오버라이딩
         // Runtime 시점에서 forEach문으로 분기된다. 
         for(Unit unit: unitList) {
             unit.move();
@@ -22,9 +23,12 @@ public class App {
             unit.stop();
             System.out.println();
         }
+
     }
 }
 
+// abstract 추상 클래스, 상속만을 위한 정의
+// 인스턴스 생성 불가능
 abstract class Unit {
     int hp;
     int ap;
@@ -32,7 +36,9 @@ abstract class Unit {
     
     abstract void move();
     abstract void attack();
-    void stop() {
+
+    // 오버라이딩 불가능
+    final void stop() {
         System.out.println("유닛의 로직으로 멈춥니다.");
     }
 }
