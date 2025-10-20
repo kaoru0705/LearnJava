@@ -37,5 +37,6 @@ public class Main {
         Box b2 = (Box) b1.clone();
         b1.setWidth(10);
         System.out.println(b2.getWidth());
+
     }
 }
