@@ -13,13 +13,13 @@ class Solution {
     public String solution(int[] numbers, String hand) {
         String answer = "";
         int[][] callNumber= {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {-1, 0, -1}};
-        int[] leftPos = {3, 0};
         int[] rightPos = {3, 2};
+        int[] leftPos = {3, 0};
         for(int num: numbers) {
             for(int x = 0; x < callNumber.length; x++) {
                 for(int y = 0; y < callNumber[x].length; y++) {
                     if(num == callNumber[x][y]) {
-                        if(num % 3 == 0 && num != 0) {
+                        if(num == 3 || num == 6 || num == 9) {
                             rightPos[0] = x;
                             rightPos[1] = y;
                             answer += "R";
@@ -39,7 +39,7 @@ class Solution {
                                 rightPos[1] = y;
                                 answer += "R";
                             } else {
-                                if(hand == "right") {
+                                if(hand.equals("right")) {
                                     rightPos[0] = x;
                                     rightPos[1] = y;
                                     answer += "R";
