@@ -19,8 +19,9 @@ interface AAA {
     void test();
     void foo();
 
-    // public static final SOME_VALUE = 10;
+    // public static final int SOME_VALUE = 10;
     int SOME_VALUE = 10;
+    // static은 구현해야 됨
     public static void qqqqq() {
         System.out.println("EEEE");
     }
