@@ -41,4 +41,3 @@ class QWER implements AAA {
         System.out.println("foo");
     }
 }
-
