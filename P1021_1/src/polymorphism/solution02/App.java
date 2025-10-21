@@ -1,4 +1,4 @@
-package polymorphism.solution;
+package polymorphism.solution02;
 
 public class App {
     public static void main(String[] args) {
@@ -7,7 +7,8 @@ public class App {
         // DI, Ioc, Container(Factory)
         // Inversion of controll
 
-        User user = new User();
+        BeansContainer beansContainer = new BeansContainer();
+        User user = beansContainer.getUser();
         user.watchTv();
     }
 }
