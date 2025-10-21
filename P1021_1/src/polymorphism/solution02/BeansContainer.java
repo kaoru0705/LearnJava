@@ -18,6 +18,7 @@ public class BeansContainer {
     private User user;
     public BeansContainer() {
         // 설정 및 조립 설정
+        // IoC
         Speaker speaker = new AppleSpeaker();
         Tv tv = new LgTv(speaker); // DI
         user = new User(tv); // DI
