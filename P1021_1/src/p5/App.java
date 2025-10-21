@@ -1,13 +1,15 @@
 package p5;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 public class App {
     public static void main(String[] args) {
         // 하루 일과 프로그램...
         new Controller().run();
+        Map<String, Integer> termsMap = new HashMap<> ();
+        
     }
+
 }
 
 // class Controller {
