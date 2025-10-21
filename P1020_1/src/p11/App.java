@@ -9,6 +9,8 @@ public class App {
 
         System.out.println(AAA.SOME_VALUE);
         AAA.qqqqq();
+        String new_id = "...!@BaT#*..y.abcdefghijklm";
+        
     }
 }
 
@@ -41,4 +43,3 @@ class QWER implements AAA {
         System.out.println("foo");
     }
 }
-
