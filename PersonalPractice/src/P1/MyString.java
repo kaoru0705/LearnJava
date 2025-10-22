@@ -1,4 +1,4 @@
-package P1;
+package p1;
 
 public class MyString {
     private byte[] string = null;
