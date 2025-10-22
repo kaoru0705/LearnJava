@@ -2,14 +2,13 @@ package p4;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
         ServiceContainer serviceContainer = new ServiceContainer();
-
         // 학생 관리 프로그램
         System.out.println("반갑습니다.");
-        
         while(true) {
             System.out.println("메뉴");
             System.out.println("1. ...");
@@ -18,7 +17,6 @@ public class App {
             System.out.println("0. 종료");
 
             String command = "0";
-
             if(command.equals("0")) break;
 
             // if(command.equals("1")) {}
@@ -28,7 +26,7 @@ public class App {
 
             // Controller는 command가 몇이든 알 바가 아니다. 기능 확장해도 if문 추가하고 그럴 필요가 없다.
             // 학생정보프로그램에서도 controller까지 전부 건드려야 됨. 기능 확장을 하려고 사용하는 쪽(controller)에서도 건드려야 한다. 확장하는 곳만 수정할 수 있게 만들어라.
-            // OCP: 개방 폐쇠 원칙 - 기능의 확장은 열려있고 수정에는 닫혀있어야 한다.
+            // OCP: 개방 폐쇄 원칙 - 기능의 확장은 열려있고 수정에는 닫혀있어야 한다.
             Service service = serviceContainer.getService(command);
             service.run();
         }
