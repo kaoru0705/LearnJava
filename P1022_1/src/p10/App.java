@@ -39,6 +39,13 @@ public class App {
             .filter(entity -> entity.getName().startsWith("김"))
             .map(entity -> StudentDto.fromEntity(entity))
             .toList();
+
+        double average = dtoList.stream()
+                    .filter(dto -> dto.getName().length() <= 3)
+                    .mapToInt(dto -> dto.getScore())
+                    .filter(score -> score >= 50)
+                    .distinct() // 중복 배제
+                    .average().getAsDouble();
         // Consumer 입력 있음 리턴 없음
         // Function 입력 있음 리턴 있음
         // Supplier 입력 없음 리턴 있음
