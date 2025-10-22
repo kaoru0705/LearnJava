@@ -11,7 +11,8 @@ public class Service {
 
     public void createStudentDto() {
         IoManager.println("[테스트 로그] 학생 등록 로직 수행");
-        StudentDto studentDto = new StudentDto();
+        StudentDto studentDto = new StudentDto(IoManager.strInput("이름 입력 > "),
+        IoManager.integerInput("나이 입력 > "), IoManager.integerInput("점수 입력 > "));
 
         studentDto.setName(IoManager.strInput("이름 입력 > "));
         studentDto.setAge(IoManager.integerInput("나이 입력 > "));
