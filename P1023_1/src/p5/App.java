@@ -1,5 +1,7 @@
 package p5;
 
+import java.util.Stack;
+
 public class App {
     public static void main(String[] args) {
         // Wrapper 클래스
@@ -35,5 +37,6 @@ public class App {
 
         // 1이 박싱되고 Integer로 들어감
         Object aaa = 1;
+        
     }
 }
