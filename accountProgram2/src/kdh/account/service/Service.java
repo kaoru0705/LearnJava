@@ -1,6 +1,5 @@
 package kdh.account.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import kdh.account.dto.AccountDto;
@@ -67,27 +66,21 @@ public class Service {
     }
 
     public void displaybyCategory() {
-        CategoryEnum type = selectCategoryCommand();
+        for(CategoryEnum type : CategoryEnum.values()) {
+            List <AccountDto> list = repository.findByCategory(type);
+            if(list.isEmpty()) {
+                InOutSystem.println(type.getLabel() + " 카테고리는 비어있습니다.");
+                continue;
+            }
+            int sumByCategory = 0;
+            
+            for(AccountDto accountDto: list) {
+                int sign = (accountDto.getTransactionName().equals("지출")) ? -1 : 1;
+                sumByCategory += accountDto.getPrice() * sign;
+            }
 
-        List <AccountDto> list = repository.findByCategory(type);
-
-        if(list.isEmpty()) {
-            InOutSystem.println("해당 카테고리는 비어있습니다.");
-            return;
+            InOutSystem.println(type.getLabel() + "별 합계는" + sumByCategory + "원입니다.");
         }
-
-        int sumByCategory = 0;
-        for(AccountDto accountDto: list) {
-            InOutSystem.println("날짜: " + accountDto.getDate()
-            + " 유형: " + accountDto.getTransactionName()
-            + " 카테고리: " + accountDto.getCategoryType().getLabel()
-            + " 금액: " + accountDto.getPrice());
-            InOutSystem.println("메모: " + accountDto.getMemo());
-            int sign = (accountDto.getTransactionName().equals("지출")) ? -1 : 1;
-            sumByCategory += accountDto.getPrice() * sign;
-        }
-
-        InOutSystem.println(type.getLabel() + "별 합계는" + sumByCategory + "입니다.");
     }
 
     public void displayPriceByDescending() {
@@ -106,7 +99,6 @@ public class Service {
             + " 카테고리: " + accountDto.getCategoryType().getLabel()
             + " 금액: " + accountDto.getPrice());
             InOutSystem.println("메모: " + accountDto.getMemo());
-            int sign = (accountDto.getTransactionName().equals("지출")) ? -1 : 1;
         }
 
     }
