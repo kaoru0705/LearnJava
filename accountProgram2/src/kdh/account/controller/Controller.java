@@ -13,11 +13,8 @@ public class Controller {
             String command = InOutSystem.strInput("선택할 기능을 골라주세요. > ");
             if(isExitCommand(command)) break;
             run(command);
-
             pause();
-
         }
-
         goodBye();
         
     }
@@ -50,11 +47,11 @@ public class Controller {
         } else if(command.equals("3")) {
             service.deleteTransaction();
         } else if(command.equals("4")) {
-            
+            service.displaybyCategory();
         } else if(command.equals("5")) {
-            
+            service.displayPriceByDescending();
         } else if(command.equals("6")) {
-            
+            service.displayListByMemoContain();
         } else {
             InOutSystem.println("잘못된 커맨드");
             InOutSystem.println("다시 입력하시기 바랍니다.");
