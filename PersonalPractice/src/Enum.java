@@ -1,8 +1,8 @@
 public class Enum {
     public static void main(String[] args) {
         BaseballTeam bt = BaseballTeam.LG;
-        System.out.println(bt.win());
-        System.out.println(bt.lose());
+        System.out.println(bt.getWin());
+        System.out.println(bt.getLose());
         System.out.println(bt.winsRate());
     }
 }
@@ -23,8 +23,8 @@ enum BaseballTeam {
         this.lose = lose;
     }
 
-    public int win() {return win;}
-    public int lose() {return lose;}
+    public int getWin() {return win;}
+    public int getLose() {return lose;}
     public double winsRate() {return (win * 100.0) / (win + lose);}
 }
 
