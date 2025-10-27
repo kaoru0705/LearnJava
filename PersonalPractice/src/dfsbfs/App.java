@@ -1,21 +1,25 @@
 package dfsbfs;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.Stack;
+import java.util.StringTokenizer;
 
 public class App {
     static boolean[] visited;
     static ArrayList<Integer>[] lists;
-    static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(bf.readLine());
+
         int v, e, start;
-        v = Integer.parseInt(scanner.next());
-        e = Integer.parseInt(scanner.next());
-        start = Integer.parseInt(scanner.next());
-        scanner.nextLine();
+        v = Integer.parseInt(st.nextToken());
+        e = Integer.parseInt(st.nextToken());
+        start = Integer.parseInt(st.nextToken());
 
         visited = new boolean[v + 1];
         lists = new ArrayList[v + 1];
@@ -25,15 +29,16 @@ public class App {
         }
 
         for(int i = 1; i <= e; i++) {
-            int v1 = Integer.parseInt(scanner.next());
-            int v2 = Integer.parseInt(scanner.next());
-            scanner.nextLine();
+            st = new StringTokenizer(bf.readLine());
+            int v1 = Integer.parseInt(st.nextToken());
+            int v2 = Integer.parseInt(st.nextToken());
 
             lists[v1].add(v2);
             lists[v2].add(v1);
-            lists[v1].sort((a, b) -> a - b);
-            lists[v2].sort((a, b) -> a - b);
         }
+
+        // 정렬
+        for(int i = 1; i <= v; i++) lists[i].sort((a, b) -> a - b);
 
         dfs(start);
         System.out.println();
