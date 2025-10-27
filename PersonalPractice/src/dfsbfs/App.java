@@ -2,14 +2,14 @@ package dfsbfs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class App {
-    static boolean[] visited;
+    static boolean[] isVisited;
     static ArrayList<Integer>[] lists;
 
     public static void main(String[] args) throws IOException{
@@ -21,7 +21,7 @@ public class App {
         e = Integer.parseInt(st.nextToken());
         start = Integer.parseInt(st.nextToken());
 
-        visited = new boolean[v + 1];
+        isVisited = new boolean[v + 1];
         lists = new ArrayList[v + 1];
 
         for(int i = 1; i <= v; i++) {
@@ -43,36 +43,34 @@ public class App {
         dfs(start);
         System.out.println();
 
-        visited = new boolean[v + 1];
+        isVisited = new boolean[v + 1];
         // dfs1(start);
         bfs(start);
     }
 
     public static void dfs(int visit) {
-        if(visited[visit]) return;
+        if(isVisited[visit]) return;
 
-        visited[visit] = true;
+        isVisited[visit] = true;
         System.out.print(visit + " ");
-        for(Integer value : lists[visit]) {
-            dfs(value);
+        for(Integer next : lists[visit]) {
+            dfs(next);
         }
     }
 
     public static void bfs(int visit) {
-        Queue<Integer> q = new LinkedList<>();
+        Queue<Integer> q = new ArrayDeque<>();
         q.offer(visit);
+        isVisited[visit] = true;
 
         while(!q.isEmpty()) {
             int cur = q.poll();
+            System.out.print(cur + " ");
 
-            if(!visited[cur]) {
-                visited[cur] = true;
-                System.out.print(cur + " ");
-            }
-
-            for(Integer value : lists[cur]) {
-                if(!visited[value]) {
-                    q.offer(value);
+            for(Integer next : lists[cur]) {
+                if(!isVisited[next]) {
+                    q.offer(next);
+                    isVisited[next] = true;
                 }
             }
         }
@@ -88,14 +86,14 @@ public class App {
     //     while(!stack.isEmpty()) {
     //         int cur = stack.pop();
             
-    //         if(!visited[cur]) {
+    //         if(!isVisited[cur]) {
     //             System.out.print(cur + " ");
+    //             isVisited[cur] = true;
     //         }
-    //         visited[cur] = true;
 
-    //         for(Integer value : lists[cur]) {
-    //             if(!visited[value]) {
-    //                 stack.push(value);
+    //         for(Integer next : lists[cur]) {
+    //             if(!isVisited[next]) {
+    //                 stack.push(next);
     //             }
     //         }
     //     }
