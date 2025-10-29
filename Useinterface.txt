@@ -1,0 +1,179 @@
+재귀구조 학생관리 프로그램 만들어보기
+학생 관리 프로그램의 복잡한 메뉴 구조(상위 메뉴 -> 하위 메뉴 -> 세부 메뉴)를 효과적으로 구현하려면, 메뉴 자체를 객체로 모델링하고 각 메뉴 항목에 실행할 기능을 연결하는 Composite 패턴과 Command 패턴을 혼합하여 설계하는 것이 좋습니다.
+1. 핵심 클래스 설계
+복잡한 메뉴 구조를 처리하기 위한 주요 클래스는 다음과 같습니다.
+1.1. MenuItem 인터페이스 (Command 패턴)
+모든 메뉴 항목이 공통으로 가져야 하는 기능을 정의합니다. 이 패턴을 통해 메뉴의 "실행" 동작을 표준화할 수 있습니다.
+Java
+
+public interface MenuItem {
+    String getName(); // 메뉴 항목의 이름을 반환
+    void execute();   // 해당 메뉴 항목이 선택되었을 때 수행할 작업
+}
+1.2. Menu 클래스 (Composite 패턴)
+다른 MenuItem 객체(하위 메뉴 또는 실행 기능)들을 포함할 수 있는 컨테이너 역할을 합니다. 이것이 바로 상위 메뉴와 하위 메뉴를 계층적으로 구성하는 핵심입니다.
+Java
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Menu implements MenuItem {
+    private String name;
+    private List<MenuItem> items = new ArrayList<>();
+    private Scanner scanner = new Scanner(System.in);
+
+    public Menu(String name) {
+        this.name = name;
+    }
+
+    public void add(MenuItem item) {
+        items.add(item);
+    }
+    
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    // 메뉴를 출력하고 사용자 입력을 처리하여 하위 메뉴로 이동하거나 기능을 실행
+    @Override
+    public void execute() {
+        while (true) {
+            System.out.println("\n--- [" + name + "] 메뉴 ---");
+            for (int i = 0; i < items.size(); i++) {
+                System.out.println((i + 1) + ". " + items.get(i).getName());
+            }
+            System.out.println("0. 이전 메뉴로 돌아가기");
+
+            System.out.print("선택: ");
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                scanner.nextLine(); // 버퍼 비우기
+
+                if (choice == 0) {
+                    System.out.println("[" + name + "] 메뉴에서 돌아갑니다.");
+                    break; // 루프 종료 = 이전 메뉴로 복귀
+                } else if (choice > 0 && choice <= items.size()) {
+                    // 선택된 하위 항목의 execute() 호출 (재귀적 호출)
+                    items.get(choice - 1).execute();
+                } else {
+                    System.out.println("⚠️ 잘못된 입력입니다. 다시 선택해주세요.");
+                }
+            } else {
+                System.out.println("⚠️ 숫자를 입력해주세요.");
+                scanner.nextLine(); // 잘못된 입력 버리기
+            }
+        }
+    }
+}
+1.3. ActionCommand 클래스 (실제 기능)
+실제로 데이터를 처리하는 가장 낮은 레벨의 메뉴 항목입니다. 이는 MenuItem을 구현하며, execute() 메서드에 실제 로직이 들어갑니다.
+Java
+
+public class ActionCommand implements MenuItem {
+    private String name;
+    private Runnable action; // 실행할 실제 로직 (Lambda 사용 가능)
+
+    public ActionCommand(String name, Runnable action) {
+        this.name = name;
+        this.action = action;
+    }
+    
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void execute() {
+        System.out.println(">> 기능 실행: " + name);
+        action.run(); // 실제 로직 실행
+    }
+}
+2. 학생 관리 프로그램 적용 예시
+위의 클래스들을 사용하여 3단계 메뉴 구조를 설계합니다.
+2.1. 프로그램의 계층 구조
+메인 메뉴 (Menu)
+학생 관리 (Menu)
+학생 등록 (ActionCommand)
+학생 정보 검색 (ActionCommand)
+성적 관리 (Menu)
+성적 입력 (ActionCommand)
+성적 조회 (ActionCommand)
+시스템 종료 (ActionCommand)
+2.2. 구현 코드
+Java
+
+public class StudentManagementApp {
+    
+    // 이 클래스에서 학생 데이터를 관리한다고 가정
+    // 예시를 위해 간단한 로직만 구현합니다.
+    private static void registerStudent() {
+        System.out.println("--- [학생 등록 기능] : 이름, 학번 등을 입력받아 저장");
+        // 실제 학생 객체 생성 및 리스트에 추가 로직 구현
+    }
+
+    private static void searchStudent() {
+        System.out.println("--- [학생 정보 검색 기능] : 검색 조건에 맞는 학생 정보 출력");
+    }
+
+    private static void inputGrade() {
+        System.out.println("--- [성적 입력 기능] : 특정 학생의 과목별 성적 입력");
+    }
+
+    private static void viewGrade() {
+        System.out.println("--- [성적 조회 기능] : 학생별/과목별 성적 리포트 출력");
+    }
+
+    public static void main(String[] args) {
+        // ----------------------------------------------------
+        // 1. 최하위 레벨 (ActionCommand) 정의: 실제 기능
+        // ----------------------------------------------------
+        
+        // 학생 관리 하위 기능
+        ActionCommand register = new ActionCommand("학생 등록", StudentManagementApp::registerStudent);
+        ActionCommand search = new ActionCommand("학생 정보 검색", StudentManagementApp::searchStudent);
+
+        // 성적 관리 하위 기능
+        ActionCommand inputG = new ActionCommand("성적 입력", StudentManagementApp::inputGrade);
+        ActionCommand viewG = new ActionCommand("성적 조회", StudentManagementApp::viewGrade);
+
+        // ----------------------------------------------------
+        // 2. 중간 레벨 (Menu) 정의: 2단계 메뉴
+        // ----------------------------------------------------
+        
+        Menu studentMenu = new Menu("학생 관리");
+        studentMenu.add(register);
+        studentMenu.add(search);
+
+        Menu gradeMenu = new Menu("성적 관리");
+        gradeMenu.add(inputG);
+        gradeMenu.add(viewG);
+
+        // ----------------------------------------------------
+        // 3. 최상위 레벨 (Menu) 정의: 메인 메뉴
+        // ----------------------------------------------------
+        
+        Menu mainMenu = new Menu("학생 관리 시스템 메인");
+        mainMenu.add(studentMenu); // 2단계 메뉴를 1단계 메뉴에 추가
+        mainMenu.add(gradeMenu);   // 2단계 메뉴를 1단계 메뉴에 추가
+        // 종료 기능은 ActionCommand를 특별히 구현하거나, Menu 클래스 내부의 0번 로직을 사용합니다.
+        
+        // ----------------------------------------------------
+        // 4. 프로그램 시작
+        // ----------------------------------------------------
+        System.out.println("== 학생 관리 프로그램 시작 ==");
+        mainMenu.execute(); 
+        System.out.println("== 학생 관리 프로그램 종료 ==");
+    }
+}
+
+// ⚠️ 참고: MenuItem, Menu, ActionCommand 클래스는 위에 제공된 코드를 그대로 사용합니다.
+3. 설계의 장점
+이 설계 방식은 객체 지향 디자인 패턴을 활용하여 다음과 같은 장점을 가집니다.
+확장성 (Composite 패턴): 메뉴의 계층 구조를 무한히 깊게 만들 수 있습니다. Menu는 MenuItem을 포함하고, Menu 자체도 MenuItem이기 때문에, 메뉴 안에 메뉴를 계속 추가할 수 있습니다.
+유연성 (Command 패턴): 각 메뉴 항목의 **실행 로직(ActionCommand)**을 메뉴의 구조(Menu)와 분리합니다. 새로운 기능을 추가하거나 기존 기능의 로직을 변경해도 메뉴 구조를 수정할 필요가 없습니다.
+단일 책임 원칙:
+Menu 클래스는 메뉴 구조를 관리하고 사용자 입력을 받아 하위 항목으로 위임하는 역할만 합니다.
+ActionCommand는 특정 기능(학생 등록, 성적 조회 등)을 실행하는 역할만 합니다.
