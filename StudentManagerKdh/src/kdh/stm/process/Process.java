@@ -7,7 +7,7 @@ public class Process {
     private Service service = new Service();
 
     public void setProcess(boolean isProcess) {
-        introduceStm();
+        introduceStm(); 
 
         while (isProcess) {
             displayMenu();
