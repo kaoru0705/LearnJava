@@ -61,7 +61,6 @@ public class Service {
             text += ", 점수: " + studentDto.getScore();
             IoManager.println(text);
         }
-        IoManager.print("검색된 인원: " + list.size());
 
         IoManager.println("============================");
     }

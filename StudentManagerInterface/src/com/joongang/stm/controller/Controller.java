@@ -28,8 +28,8 @@ public class Controller {
     private void welcome() {
         IoManager.println("********************************");
         IoManager.println("         학생 관리 프로그램        ");
-        IoManager.println("          version3              ");
-        IoManager.println("          2025.10.29            ");
+        IoManager.println("          version2              ");
+        IoManager.println("          2025.10.17            ");
         IoManager.println("********************************");
     }
 
