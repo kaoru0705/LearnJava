@@ -71,17 +71,38 @@ public class Service {
         IoManager.println("===== 학생 정보 삭제 시작 =====");
 
         String removeName = IoManager.input("삭제할 학생의 이름 > ");
-
-        int count = repository.removeByName(removeName);
+        String removeId = IoManager.input("삭제할 학번 > ");
+        int count = repository.removeByNameAndId(removeName, removeId);
         IoManager.println("총 " + count + "명의 정보가 삭제 되었습니다.");
 
         IoManager.println("============================");
+    }
+
+    public void displayAll() {
+        IoManager.println("===== 학생 정보 출력 =====");
+
+        
+        List<StudentDto> list = repository.findAll();
+        
+        if(list.isEmpty()) IoManager.println("등록된 학생이 없습니다.");
+
+        for(StudentDto studentDto: list) {
+            String text = "";
+            text += "이름: " + studentDto.getName();
+            text += ", 나이: " + studentDto.getAge();
+            text += ", 점수: " + studentDto.getScore();
+            IoManager.println(text);
+        }
+
+        IoManager.println("총 " + list.size() + "명이 존재합니다.");
     }
 
     public void statistize() {
         IoManager.println("===== 학생 정보 통계 시작 =====");
 
         List<StudentDto> list = repository.findAll();
+
+        if(list.isEmpty()) IoManager.println("등록된 학생이 없습니다.");
         int sumScore = 0;
         for(StudentDto studentDto : list) {
             sumScore += studentDto.getScore();
@@ -95,16 +116,25 @@ public class Service {
     }
 
     public void add() {
-
-        ActionCommand register = new ActionCommand("학생 등록", this::registerStudent);
-        ActionCommand search = new ActionCommand("학생 정보 검색", this::searchStudent);
+        // 학생 관리
+        ActionCommand registerAction = new ActionCommand("학생 등록", this::registerStudent);
+        ActionCommand removeAction = new ActionCommand("학생 삭제 ", this::removeStudent);
+        
+        // 학생 조회
+        ActionCommand searchAction = new ActionCommand("학생 정보 검색", this::searchStudent);
+        ActionCommand displayAllAction = new ActionCommand("학생 정보 목록 출력", this::displayAll);
 
         Menu studentMenu = new Menu("학생 관리");
-        studentMenu.add(register);
-        studentMenu.add(search);
+        studentMenu.add(registerAction);
+        studentMenu.add(removeAction);
+
+        Menu searchMenu = new Menu("학생 조회");
+        searchMenu.add(searchAction);
+        searchMenu.add(displayAllAction);
 
         Menu mainMenu = new Menu("학생 관리 시스템 메인");
         mainMenu.add(studentMenu);
+        mainMenu.add(searchMenu);
 
         System.out.println("== 학생 관리 프로그램 시작 ==");
         mainMenu.execute(); 

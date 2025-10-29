@@ -19,7 +19,6 @@ public class Repository {
 
     public List<StudentDto> findAll() {
         if(list.isEmpty()) {
-            IoManager.println("등록된 학생이 없습니다.");
             return new ArrayList<>();
         }
         List<StudentDto> copyList = new ArrayList<>();
@@ -53,18 +52,19 @@ public class Repository {
 
         return newList;
     }
-    public int removeByName(String removeName) {
-        int removeCount = 0;
+    public int removeByNameAndId(String removeName, String removeId) {
+        int removedCount = 0;
 
         Iterator<StudentDto> iterator = list.iterator();
         while(iterator.hasNext()) {
-            if(iterator.next().getName().equals(removeName)) {
+            StudentDto studentDto = iterator.next();
+            if(studentDto.getId().equals(removeId) && studentDto.getName().equals(removeName)) {
                 iterator.remove();
-                removeCount++;
+                removedCount++;
             }
         }
 
-        return removeCount;
+        return removedCount;
     }
 }
 
