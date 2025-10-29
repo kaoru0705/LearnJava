@@ -1,4 +1,5 @@
-package dfsbfs;
+package dfs_bfs;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,7 +9,7 @@ import java.util.Queue;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class App {
+public class Main {
     static boolean[] isVisited;
     static ArrayList<Integer>[] lists;
 
