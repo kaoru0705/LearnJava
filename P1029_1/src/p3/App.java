@@ -8,7 +8,8 @@ import java.util.Set;
 public class App {
     public static void main(String[] args) {
         Map<String, TodoAdditionalData> todos = new HashMap<> ();
-        todos.put("러닝하기!!", new TodoAdditionalData());
+
+        todos.put("러닝하기!!", new TodoAdditionalData(LocalDate.parse("2025-10-29"), null, true, "하하하하하하"));
 
         // map 반복 돌리기... 일반적이지 않음
         Set<String> keys = todos.keySet();
