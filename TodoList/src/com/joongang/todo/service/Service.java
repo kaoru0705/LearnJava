@@ -25,9 +25,10 @@ public class Service {
         IoManager.println("===== 할일 추가 시작 =====");
         String todo = IoManager.input("할일 입력 > ");
         
-        LocalDate registerDate = LocalDate.parse(IoManager.input("등록일 > "));
-        String strCompleteDate = IoManager.input("완료일 입력 없으시다면 그냥 엔터 > ");
+        LocalDate registerDate = LocalDate.parse(IoManager.strDateInput("등록일 > "));
+        String strCompleteDate = IoManager.strDateInput("완료일 입력 없으시다면 그냥 엔터 > ");
         LocalDate completeDate;
+        
         if(strCompleteDate.equals("")) {
             completeDate = null;
         } else {
@@ -66,7 +67,7 @@ public class Service {
         IoManager.println("===== 완료 처리하기 =====");
 
         String searchTodo = IoManager.input("검색할 할일 > ");
-        LocalDate registerDate = LocalDate.parse(IoManager.input("등록일 > "));
+        LocalDate registerDate = LocalDate.parse(IoManager.strDateInput("등록일 > "));
 
 
         int count = repository.updateByTodoAndDate(searchTodo, registerDate);
@@ -130,7 +131,7 @@ public class Service {
         IoManager.println("===== 할일 정보 삭제 시작 =====");
 
         String removeName = IoManager.input("삭제할 할일 > ");
-        LocalDate registerDate = LocalDate.parse(IoManager.input("등록일 > "));
+        LocalDate registerDate = LocalDate.parse(IoManager.strDateInput("등록일 > "));
 
         int removedCount = repository.removeByTodoAndDate(removeName, registerDate);
         IoManager.println("총 " + removedCount + "명의 정보가 삭제 되었습니다.");

@@ -47,7 +47,7 @@ public class Repository {
 
         for(Map.Entry<String, Dto> entry : list.entrySet()) {
             if(entry.getKey().contains(searchTodo) && date.equals(entry.getValue().getRegisterDate()) && !entry.getValue().getIsComplete()) {
-                LocalDate completeDate = LocalDate.parse(IoManager.input("등록할 완료일 > "));
+                LocalDate completeDate = LocalDate.parse(IoManager.strDateInput("등록할 완료일 > "));
                 entry.getValue().setCompleteDate(completeDate);
                 entry.getValue().setIsComplete(true);
                 updatedCount++;

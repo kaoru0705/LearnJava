@@ -2,6 +2,8 @@ package com.joongang.todo.util;
 
 import java.util.Scanner;
 
+import javax.swing.plaf.InputMapUIResource;
+
 public class IoManager {
     private static Scanner scanner = new Scanner(System.in);
 
@@ -37,5 +39,19 @@ public class IoManager {
         scanner.nextLine();
 
         return number;
+    }
+
+    public static String strDateInput(String text) {
+        println("날짜를 입력하신다면 YYYY-mm-dd 형식으로 입력하세요.");
+        print(text);
+
+        String s = scanner.nextLine();
+        while(!s.matches("\\d{4}-\\d{2}-\\d{2}") && !s.equals("")) {
+            println("잘못된 형식 ");
+            print(text);
+            s = scanner.nextLine();
+        }
+
+        return s;
     }
 }
