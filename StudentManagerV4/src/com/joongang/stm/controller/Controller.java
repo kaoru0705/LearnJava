@@ -10,6 +10,9 @@ public class Controller {
     private Service service = new Service();    // composition
 
     public void run() {
+
+        service.load();
+
         welcome();
 
         while(true) {
@@ -22,14 +25,17 @@ public class Controller {
             processCommand(command);
             pause();
         }
+        
+        service.save();
+
         bye();
     }
 
     private void welcome() {
         IoManager.println("********************************");
         IoManager.println("         학생 관리 프로그램        ");
-        IoManager.println("          version3              ");
-        IoManager.println("          2025.10.29            ");
+        IoManager.println("          version4              ");
+        IoManager.println("          2025.10.30            ");
         IoManager.println("********************************");
     }
 

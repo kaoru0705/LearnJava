@@ -42,6 +42,11 @@ public class Main {
         }
         countList.sort((a, b) -> a - b);
 
+        System.out.println(totalCount);
+        for(int count: countList) {
+            System.out.println(count);
+        }
+
     }
 
     public static int bfs(int x, int y) {

@@ -90,4 +90,12 @@ public class Service {
 
         IoManager.println("============================");
     }
+
+    public void save() {
+        repository.saveToFile();
+    }
+
+    public void load() {
+        repository.loadFromFile();
+    }
 }
