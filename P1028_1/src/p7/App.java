@@ -6,6 +6,7 @@ import java.security.MessageDigest;
 public class App {
     public static void main(String[] args) throws Exception {
         String text = "안녕하세요!!";
+        // 비트코인에서도 쓰는 알고리즘
         MessageDigest md = MessageDigest.getInstance("SHA-1");
         byte[] digest = md.digest(text.getBytes(StandardCharsets.UTF_8));
 
