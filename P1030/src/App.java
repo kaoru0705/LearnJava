@@ -31,6 +31,13 @@ public class App {
             }
         }
 
+        Map<String, Object> map1 = new HashMap<>();
+
+        map1.put("안녕", 3);
+        map1.put("반갑", 4);
+        map1.put("야호", 1);
+        map1.entrySet().stream().sorted((a, b) -> (Integer)a.getValue() - (Integer)b.getValue()).forEach(e -> System.out.print(e.getValue() + " "));
+        
     }
 }
 
