@@ -35,7 +35,7 @@ public class Service {
             completeDate = LocalDate.parse(strCompleteDate);
         }
 
-        boolean isComplete = (completeDate == null) ? false : true;
+        boolean isComplete = false;
         String comment = IoManager.input("후기 입력 > ");
 
         
