@@ -18,6 +18,12 @@ public class App {
                 String nickname = dis.readUTF();
 
                 ClientInfoDto clientInfoDto = new ClientInfoDto(nickname, socket);
+                ClientInfoListManager.list.add(clientInfoDto);
+
+                ServerReceiveMessageThread serverReceiveMessageThread = new ServerReceiveMessageThread(clientInfoDto);
+                serverReceiveMessageThread.start();
+
+                
                 
             }
         } catch(Exception e) {

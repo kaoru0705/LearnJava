@@ -17,7 +17,22 @@ public class App {
             System.out.println("서버에 접속 성공...");
 
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+            // 프로토콜에 따라서 처음에는 무조건 닉네임을 전달(문자열)
             dos.writeUTF(nickname);
+
+            ClientReceiveMessageThread clientReceiveMessageThread = new ClientReceiveMessageThread(socket);
+            clientReceiveMessageThread.start();
+
+            while(true) {
+                System.out.println("메시지 입력 (0.종료) > ");
+                String message = scanner.nextLine();
+
+                if(message.equals("0")) {
+                    break;
+                }
+
+                dos.writeUTF(message);
+            }
 
         } catch(Exception e) {
             e.printStackTrace();
