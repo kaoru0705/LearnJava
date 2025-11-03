@@ -42,16 +42,13 @@ public class Main {
             int count = 0;
             for(int y = 0; y < n; y++) {
                 for(int x = 0; x < m; x++) {
-                    
                     if(!isVisited[y][x] && arr[y][x] == 1) {
                         count += bfs(y, x);
                     }
                 }
             }
 
-            if (count != 0) {
-                countList.add(count);
-            }
+            countList.add(count);
         }
 
         for(int count : countList) {
@@ -62,7 +59,7 @@ public class Main {
     public static int bfs(int startY, int startX) {
         Queue<int []> q = new ArrayDeque<>();
         q.offer(new int[]{startY, startX});
-        int count = 0;
+        int count = 1;
         while(!q.isEmpty()) {
             int[] cur = q.poll();
             int curY = cur[0];
