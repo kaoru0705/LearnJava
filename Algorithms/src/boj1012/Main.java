@@ -1,6 +1,9 @@
 package boj1012;
 
 import java.io.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -17,6 +20,8 @@ public class Main {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
         int t = Integer.parseInt(br.readLine());
+        List<Integer> countList = new ArrayList<>();
+
         for(int i = 0; i < t; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             m = Integer.parseInt(st.nextToken());
@@ -34,17 +39,23 @@ public class Main {
                 arr[y][x] = 1;
             }
 
+            int count = 0;
             for(int y = 0; y < n; y++) {
                 for(int x = 0; x < m; x++) {
-                    int count = 0;
+                    
                     if(!isVisited[y][x] && arr[y][x] == 1) {
-                        count = bfs(y, x);
-                    }
-                    if(count != 0) {
-                        System.out.println(count);
+                        count += bfs(y, x);
                     }
                 }
             }
+
+            if (count != 0) {
+                countList.add(count);
+            }
+        }
+
+        for(int count : countList) {
+            System.out.println(count);
         }
     }
 
@@ -66,7 +77,7 @@ public class Main {
 
                 q.offer(new int[]{nextY, nextX});
                 isVisited[nextY][nextX] = true;
-                count++;
+                count = 1;
             }
         }
 
