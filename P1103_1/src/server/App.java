@@ -23,8 +23,6 @@ public class App {
                 ServerReceiveMessageThread serverReceiveMessageThread = new ServerReceiveMessageThread(clientInfoDto);
                 serverReceiveMessageThread.start();
 
-                
-                
             }
         } catch(Exception e) {
             e.printStackTrace();
