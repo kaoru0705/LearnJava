@@ -35,7 +35,7 @@ public class Main {
             }
 
             for(int y = 0; y < n; y++) {
-                for(int x = 0; x < n; x++) {
+                for(int x = 0; x < m; x++) {
                     int count = 0;
                     if(!isVisited[y][x] && arr[y][x] == 1) {
                         count = bfs(y, x);
