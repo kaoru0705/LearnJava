@@ -36,18 +36,22 @@ public class Main {
 
             for(int y = 0; y < n; y++) {
                 for(int x = 0; x < n; x++) {
-                    if(!isVisited[y][x]) {
-                        bfs(y, x);
+                    int count = 0;
+                    if(!isVisited[y][x] && arr[y][x] == 1) {
+                        count = bfs(y, x);
+                    }
+                    if(count != 0) {
+                        System.out.println(count);
                     }
                 }
             }
         }
     }
 
-    public static bfs(int startY, int startX) {
+    public static int bfs(int startY, int startX) {
         Queue<int []> q = new ArrayDeque<>();
         q.offer(new int[]{startY, startX});
-
+        int count = 0;
         while(!q.isEmpty()) {
             int[] cur = q.poll();
             int curY = cur[0];
@@ -60,9 +64,12 @@ public class Main {
                 if(nextY < 0 || nextY >= n || nextX < 0 || nextX >= m) continue;
                 if(isVisited[nextY][nextX] || arr[nextY][nextX] == 0) continue;
 
-                
-
+                q.offer(new int[]{nextY, nextX});
+                isVisited[nextY][nextX] = true;
+                count++;
             }
         }
+
+        return count;
     }
 }
