@@ -1,11 +1,12 @@
 package boj1012;
 
 import java.io.*;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-    private static int[][] Arr;
-    private static int[][] isVisited;
+    private static int[][] arr;
+    private static boolean[][] isVisited;
     private static int n;
     private static int m;
     private static int k;
@@ -18,11 +19,50 @@ public class Main {
         int t = Integer.parseInt(br.readLine());
         for(int i = 0; i < t; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
-            n = Integer.parseInt(st.nextToken());
             m = Integer.parseInt(st.nextToken());
+            n = Integer.parseInt(st.nextToken());
             k = Integer.parseInt(st.nextToken());
             
-            
+            arr = new int[n][m];
+            isVisited = new boolean[n][m];
+
+            for(int j = 0; j < k; j++) {
+                st = new StringTokenizer(br.readLine());
+                int x = Integer.parseInt(st.nextToken());
+                int y = Integer.parseInt(st.nextToken());
+                
+                arr[y][x] = 1;
+            }
+
+            for(int y = 0; y < n; y++) {
+                for(int x = 0; x < n; x++) {
+                    if(!isVisited[y][x]) {
+                        bfs(y, x);
+                    }
+                }
+            }
+        }
+    }
+
+    public static bfs(int startY, int startX) {
+        Queue<int []> q = new ArrayDeque<>();
+        q.offer(new int[]{startY, startX});
+
+        while(!q.isEmpty()) {
+            int[] cur = q.poll();
+            int curY = cur[0];
+            int curX = cur[1];
+
+            for(int i = 0; i < 4; i++) {
+                int nextY = curY + moveY[i];
+                int nextX = curX + moveX[i];
+
+                if(nextY < 0 || nextY >= n || nextX < 0 || nextX >= m) continue;
+                if(isVisited[nextY][nextX] || arr[nextY][nextX] == 0) continue;
+
+                
+
+            }
         }
     }
 }
