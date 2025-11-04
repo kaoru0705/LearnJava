@@ -7,7 +7,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-    static boolean[] isVisited = new boolean[100001];
+    static boolean[] isVisited = new boolean[101];
     static int n;
     static int k;
 
@@ -29,31 +29,34 @@ public class Main {
     private static void dfs(int n) {
         Queue<Integer> q = new ArrayDeque<>();
         q.offer(n);
-        isVisited[n] = true;
+        isVisited[n % 100] = true;
 
-        int count = 1;
+        int count = 0;
 
         while(!q.isEmpty()) {
-            int position = q.poll();
-
-            if(position - 1 == k || position + 1 == k || position * 2 == k) {
-                System.out.println(count);
-                return;
-            }
-            if(position - 1 >= 0 || !isVisited[position - 1]) {
-                q.offer(position - 1);
-                isVisited[position - 1] = true;
-            }
-            if(position + 1 <= 100000 && !isVisited[position + 1]) {
-                q.offer(position - 1);
-                isVisited[position + 1] = true;
-            }
-            if(position * 2 <= 100000 && !isVisited[position * 2]) {
-                q.offer(position * 2);
-                isVisited[position * 2] = true;
-            }
-
             count++;
+            int size = q.size();
+            
+            for(int i = 0; i < size; i++) {
+                int position = q.poll();
+                if(position - 1 == k || position + 1 == k || position * 2 == k) {
+                    System.out.println(count);
+                    return;
+                }
+                if(position - 1 >= 0 || !isVisited[(position - 1)%100]) {
+                    q.offer(position - 1);
+                    isVisited[(position - 1)%100] = true;
+                }
+                if(position + 1 <= 100000 && !isVisited[(position + 1)%100]) {
+                    q.offer(position - 1);
+                    isVisited[(position + 1)%100] = true;
+                }
+                if(position * 2 <= 100000 && !isVisited[(position * 2)%100]) {
+                    q.offer(position * 2);
+                    isVisited[(position * 2)%100] = true;
+                }
+            }
+
         }
     }
 }
