@@ -7,7 +7,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-    static boolean[] isVisited = new boolean[101];
+    static boolean[] isVisited = new boolean[100001];
     static int n;
     static int k;
 
@@ -29,7 +29,7 @@ public class Main {
     private static void dfs(int n) {
         Queue<Integer> q = new ArrayDeque<>();
         q.offer(n);
-        isVisited[n % 100] = true;
+        isVisited[n] = true;
 
         int count = 0;
 
@@ -43,17 +43,17 @@ public class Main {
                     System.out.println(count);
                     return;
                 }
-                if(position - 1 >= 0 || !isVisited[(position - 1)%100]) {
+                if(position - 1 >= 0 && !isVisited[position - 1]) {
                     q.offer(position - 1);
-                    isVisited[(position - 1)%100] = true;
+                    isVisited[position - 1] = true;
                 }
-                if(position + 1 <= 100000 && !isVisited[(position + 1)%100]) {
-                    q.offer(position - 1);
-                    isVisited[(position + 1)%100] = true;
+                if(position + 1 <= 100000 && !isVisited[position + 1]) {
+                    q.offer(position + 1);
+                    isVisited[position + 1] = true;
                 }
-                if(position * 2 <= 100000 && !isVisited[(position * 2)%100]) {
+                if(position * 2 <= 100000 && !isVisited[position * 2]) {
                     q.offer(position * 2);
-                    isVisited[(position * 2)%100] = true;
+                    isVisited[position * 2] = true;
                 }
             }
 
