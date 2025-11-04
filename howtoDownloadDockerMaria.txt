@@ -1,0 +1,35 @@
+MariaDB 11.4-ubi
+Optional settings
+Container name: mariadb_11.4
+Ports
+Host port: 3306 - 다른 sql을 깔았다면 그 port를 사용해야 한다.
+Volumes - 넘어가라
+Host Path: 
+Container path: 
+Environmnet variables
+Variable: MARIADB_ROOT_PASSWORD
+Value: 1234
+Variable: Tz
+Value: Asia/Seoul
+
+DBeaver -db 접속 클라이언트 25.2.4
+Windows (installer)
+port 3306 Password 1234하고 그냥 Test Connection
+
+// db 생성
+CREATE DATABASE test;
+// 계정 생성
+CREATE USER 'test'@'%' IDENTIFIED BY '!@test1234';
+// 모든 권한 부여
+GRANT ALL PRIVILEGES ON test.* TO 'test'@'%';
+// 결합
+FLUSH PRIVILEGES;
+
+localhost 삭제
+
+다시 생성
+Database : test
+Username: test
+Password: !@test1234
+
+test를 connect disconnect

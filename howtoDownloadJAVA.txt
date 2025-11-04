@@ -66,3 +66,4 @@ preferences - open user setting(JSON)
 ctrl shift p - java create java project - 폴더 javaworkspace 클릭 - select the project location - names folder - JAVA PROJECTS를 맨위로 올리기 
 java project - folder name - src - +버튼 누르고 CLASS - class name
 psvm tab - public static void main
+
