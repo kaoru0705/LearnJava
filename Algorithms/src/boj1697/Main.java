@@ -23,10 +23,10 @@ public class Main {
             return;
         }
 
-        dfs(n);
+        bfs(n);
     }
 
-    private static void dfs(int n) {
+    private static void bfs(int n) {
         Queue<Integer> q = new ArrayDeque<>();
         q.offer(n);
         isVisited[n] = true;
