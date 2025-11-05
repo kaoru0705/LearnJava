@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class App {
+public class Main {
     private static int n;
     private static int m;
     private static boolean[] isVisited;
@@ -25,7 +25,7 @@ public class App {
         isVisited = new boolean[n + 1];
         list = new ArrayList[n + 1];
 
-        for(int i = 1; i <= m; i++) {
+        for(int i = 1; i <= n; i++) {
             list[i] = new ArrayList<>();
         }
 
@@ -39,20 +39,30 @@ public class App {
         }
 
         int count = 0;
-        for(int i = 1; i < n; i++) {
-            if(list[i].isEmpty() || isVisited[i]) continue;
-            dfs(i);
+        for(int i = 1; i <= n; i++) {
+            if(isVisited[i]) continue;
+            if(list[i].isEmpty()) count++;
+            count += dfs(i);
         }
+
+        System.out.println(count);
 
     }
 
-    private static int dfs(int start) {
+    private static int dfs(int i) {
         int count = 0;
-        Stack<Integer> s = new Stack<>();
-        s.push(start);
+        Stack<Integer> stack = new Stack<>();
+        stack.push(i);
 
-        while(!s.isEmpty()) {
-            
+        while(!stack.isEmpty()) {
+            int now = stack.pop();
+
+            for(int e : list[now]) {
+                if(isVisited[e]) continue;
+                stack.push(e);
+                isVisited[e] = true;
+                count = 1;
+            }
         }
 
         return count;
