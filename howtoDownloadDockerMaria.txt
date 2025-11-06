@@ -33,3 +33,11 @@ Username: test
 Password: !@test1234
 
 test를 connect disconnect
+
+다른 사이트 연결
+univ.null-pointer-exception.com
+Server Host: home.null-pointer-exception.com Port: 5306
+Database: testuniv
+
+Username: testuniv
+Password: !@testuniv1234
