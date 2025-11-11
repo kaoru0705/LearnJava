@@ -1,0 +1,117 @@
+copilot geminai 등등 사용
+1
+[작업 내용]
+주제: 학생관리 프로그램 CLI(사용자로부터 입력 받음)
+기능: 학생 정보 등록, 삭제, 수정, 목록
+
+언어: JAVA
+프레임워크: 없음, 표준 라이브러리만 활용
+
+학생 정보 구성: 이름, 나이, 점수
+
+아키텍처, 클래스, 디자인패턴 등등
+
+코드가 이해가 안된다면?
+물어보거나 주석을 달아달라고 해라
+
+나 이 코드 이해를 잘 못하겠거든? 최대한 주석 많이 작성해줘
+
+이거 파일에 저장하고 로드하는 기능 추가해줘
+
+[작업 내용]
+향후 기능 추가를 위해서 메뉴는 트리구조의 형태로 작업하고 싶어. 컴포지트 패턴을 이용해주고, SRP 원칙에 따라 철저하게 클래스 및 메서드를 활용해줘
+
+[작업 내용]
+자 이제 기능을 니가 원하는대로 단순하게 학생 정보 관리 뿐 아니라, 추가적인 기능을 내가 만족할 만큼 존나 멋지게 만들어봐, 그리고 UI도 존나 멋지게 꾸며줘
+최대한... 정말 너무 멋진 학사 관리 프로그램 니 멋대로 만들어봐.(단, 외부라이브러리를 사용하지 않는 범위에서)
+
+
+
+2
+.으로 구분자를 명확히 해서 질문
+chatgpt gemini 한테 DB는 따로 만들어야 한다.
+[작업 내용]
+
+웹 프로그램을 만들 거야.
+
+주제: 게시판
+
+기능: 회원가입, 로그인, 게시글 CRUD, 댓글
+
+
+위 내용으로 MariaDB 기준으로 DDL 적당하게 정의해줘
+
+
+
+[DB 정보], [MariaDB 11.4 테이블 정의] 이런 것도 적어서 코파일럿한테 알려줘야 한다.
+
+
+강사님은 파일만들고 초기설정은 하고 코파일럿을 사용한다고 한다.
+밑에처럼 한 번에 안 만들고 여러번 기초 코드를 만든다고 한다.
+
+
+[작업 내용]
+웹 프로그램을 만들 거야.
+주제: 게시판
+기능: 회원가입, 로그인, 게시글 CRUD, 댓글
+
+언어: JAVA 21버전
+프레임워크 및 라이브러리: SpringBoot 3.xx, Mybatis, Thymeleaf
+빌드 툴: Gradle
+
+[DB 정보]
+DB: MariaDB 11.4
+Host: localhost
+Port: 3306
+DB: test
+ID: test
+PASSWORD: !@test1234
+
+
+[MariaDB 11.4 테이블 정의]
+CREATE TABLE users (
+    user_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '사용자 고유 ID',
+    username VARCHAR(50) NOT NULL UNIQUE COMMENT '사용자 이름 (로그인 ID로 사용)',
+    password_hash VARCHAR(255) NOT NULL COMMENT '비밀번호 해시 값',
+    email VARCHAR(100) UNIQUE COMMENT '이메일 주소 (선택 사항, UNIQUE)',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '가입일시'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='게시판 사용자 정보';
+
+CREATE TABLE posts (
+    post_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '게시글 고유 ID',
+    user_id INT UNSIGNED NOT NULL COMMENT '작성자 ID (users.user_id 참조)',
+    title VARCHAR(255) NOT NULL COMMENT '게시글 제목',
+    content TEXT NOT NULL COMMENT '게시글 내용',
+    views INT UNSIGNED DEFAULT 0 COMMENT '조회수',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '작성일시',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '최종 수정일시',
+
+    -- 외래 키 제약: user_id는 users 테이블의 user_id를 참조합니다.
+    -- 작성자가 삭제되면 게시글도 삭제됩니다 (CASCADE).
+    FOREIGN KEY (user_id)
+        REFERENCES users(user_id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='게시글 정보';
+
+CREATE TABLE comments (
+    comment_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '댓글 고유 ID',
+    post_id INT UNSIGNED NOT NULL COMMENT '댓글이 달린 게시글 ID (posts.post_id 참조)',
+    user_id INT UNSIGNED NOT NULL COMMENT '댓글 작성자 ID (users.user_id 참조)',
+    content VARCHAR(1000) NOT NULL COMMENT '댓글 내용',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '작성일시',
+
+    -- 외래 키 제약 1: post_id는 posts 테이블의 post_id를 참조합니다.
+    -- 게시글이 삭제되면 댓글도 삭제됩니다 (CASCADE).
+    FOREIGN KEY (post_id)
+        REFERENCES posts(post_id)
+        ON DELETE CASCADE,
+
+    -- 외래 키 제약 2: user_id는 users 테이블의 user_id를 참조합니다.
+    -- (선택적: 사용자가 삭제되어도 댓글은 남기거나, NULL로 설정할 수도 있으나, 여기서는 CASCADE 사용)
+    FOREIGN KEY (user_id)
+        REFERENCES users(user_id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='게시글 댓글 정보';
+
+
+
