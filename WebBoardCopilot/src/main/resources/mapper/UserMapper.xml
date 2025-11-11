@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webboard.repository.mapper.UserMapper">
+
+    <!-- 회원 등록 -->
+    <insert id="insertUser" parameterType="com.webboard.entity.User" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO users (username, password_hash, email)
+        VALUES (#{username}, #{passwordHash}, #{email})
+    </insert>
+
+    <!-- 사용자 조회 (ID로) -->
+    <select id="selectUserById" parameterType="int" resultType="com.webboard.entity.User">
+        SELECT user_id as userId, username, password_hash as passwordHash, email, created_at as createdAt
+        FROM users
+        WHERE user_id = #{userId}
+    </select>
+
+    <!-- 사용자 조회 (username으로) -->
+    <select id="selectUserByUsername" parameterType="string" resultType="com.webboard.entity.User">
+        SELECT user_id as userId, username, password_hash as passwordHash, email, created_at as createdAt
+        FROM users
+        WHERE username = #{username}
+    </select>
+
+    <!-- 모든 사용자 조회 -->
+    <select id="selectAllUsers" resultType="com.webboard.entity.User">
+        SELECT user_id as userId, username, password_hash as passwordHash, email, created_at as createdAt
+        FROM users
+        ORDER BY created_at DESC
+    </select>
+
+    <!-- 사용자 정보 수정 -->
+    <update id="updateUser" parameterType="com.webboard.entity.User">
+        UPDATE users
+        SET username = #{username},
+            email = #{email}
+        WHERE user_id = #{userId}
+    </update>
+
+    <!-- 사용자 삭제 -->
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM users
+        WHERE user_id = #{userId}
+    </delete>
+
+</mapper>
