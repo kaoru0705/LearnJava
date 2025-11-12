@@ -40,3 +40,6 @@ project - buildpath - addlibrary - userlibrary - userlibraries - new oracle driv
 
 shift alt z로 try catch문 자동완성
 ctrl shift o 자동 import
+
+shift + f2 로 api 열림
+ctrl f11 run
