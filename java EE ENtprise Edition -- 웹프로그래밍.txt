@@ -33,3 +33,9 @@ classpath
 C:\java_workspace\day1\bin
 
 zino1187@naver.com - 중앙교육생 강동훈
+
+C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib
+ojdbc6.jar을 이클립스에 폴더를 만들고 넣어줘야 한다.
+project - buildpath - addlibrary - userlibrary - userlibraries - new oracle driver 라고 짓고 - add jar
+
+shift alt z로 try catch문 자동완성
