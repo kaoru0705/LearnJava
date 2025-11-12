@@ -1,0 +1,10 @@
+oracle
+https://blog.naver.com/zino1187
+password 1234
+
+8.0.44
+https://dev.mysql.com/downloads/mysql/
+installer
+
+custom
+Development Components - Unavailable
