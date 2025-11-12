@@ -39,3 +39,4 @@ ojdbc6.jar을 이클립스에 폴더를 만들고 넣어줘야 한다.
 project - buildpath - addlibrary - userlibrary - userlibraries - new oracle driver 라고 짓고 - add jar
 
 shift alt z로 try catch문 자동완성
+ctrl shift o 자동 import
