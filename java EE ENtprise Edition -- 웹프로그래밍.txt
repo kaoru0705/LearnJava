@@ -1,0 +1,33 @@
+Java SE
+Java EE Entprise Edition --> 웹프로그래밍
+					html, css, javascript, vue, react, node.js, jquery
+Java ME Micro Edition
+
+스프링 프레임웍 --> eclipse
+스프링 부트 --> intellij
+
+https://www.eclipse.org/downloads/
+
+eclipse web developer로 다운
+C:\Users\user\eclipse\jee-2025-09
+
+https://jdk.java.net/archive/
+21.0.2 (build 21.0.2+13)
+
+C:\java_workspace
+c drive에 jdk-21.0.2 옮기기
+
+시스템속성 - 환경변수
+시스템변수 babo-바보 추가 가능
+cmd 에서 환경변수 치기 echo %babo%
+
+시스템변수 Path 에서 편집
+C:\jdk-21.0.2\bin
+이렇게 하면 javac java 등등을 마음껏 사용할 수 있다.
+
+javac -d C:\java_workspace\day1\bin Dog.java
+컴파일해 -d 내가 원하는 디렉터리에 컴파일해줘
+
+시스템 변수에서 이렇게 만들어야 class끼리 이어짐 java만의 환경변수 path
+classpath
+C:\java_workspace\day1\bin

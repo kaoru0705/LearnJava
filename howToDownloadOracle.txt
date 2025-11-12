@@ -16,6 +16,7 @@ Oracle
 Dbeaver도 client
 cmd 로 client 접속
 
+-- sys(oracle 최고 권한자)
 cmd - sqlplus sys/1234 as sysdba
 
 spool 'C:\db_workspace\day1\12일필기.txt'
@@ -41,6 +42,9 @@ USER is "SYS"
 SQL> -- 생성한 유저에게 권한 부여하기
 SQL> grant create session to java;
 
+spool off -- 기록 중지
+
+다른 cmd 창에서 이렇게 쳐서 접속 가능
 C:\Users\user>sqlplus java/1234
 
 SQL> create table member(
