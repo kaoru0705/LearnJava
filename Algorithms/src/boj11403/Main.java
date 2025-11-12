@@ -24,7 +24,9 @@ public class Main {
         for(int i = 0; i < size; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             for(int j = 0; j < size; j++) {
-                list[i].add(Integer.parseInt(st.nextToken()));
+                if(Integer.parseInt(st.nextToken()) == 1) {
+                    list[i].add(j);
+                }
             }
         }
     }
