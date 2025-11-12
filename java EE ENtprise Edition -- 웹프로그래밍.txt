@@ -31,3 +31,5 @@ javac -d C:\java_workspace\day1\bin Dog.java
 시스템 변수에서 이렇게 만들어야 class끼리 이어짐 java만의 환경변수 path
 classpath
 C:\java_workspace\day1\bin
+
+zino1187@naver.com - 중앙교육생 강동훈
