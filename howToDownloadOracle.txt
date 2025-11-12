@@ -8,3 +8,42 @@ installer
 
 custom
 Development Components - Unavailable
+
+
+
+Oracle
+
+Dbeaver도 client
+cmd 로 client 접속
+
+cmd - sqlplus sys/1234 as sysdba
+
+spool 'C:\db_workspace\day1\12일필기.txt'
+--데이터베이스 생성하기
+create tablespace space1112 -- oracle에서는 tablespace
+datafile 'C:\oraclexe\app\oracle\oradata\XE\space1112.dbf'
+size 3M;
+
+SQL> create user java
+  2  identified by 1234
+  3  default tablespace space1112
+  4  qouta unlimited on space1112; -- 오타가 났다.
+
+
+SQL> ed -- 이걸로 편집 가능
+quota unlimited on space1112
+
+User created.
+
+SQL> -- 내가 누구인가?
+SQL> show user;
+USER is "SYS"
+SQL> -- 생성한 유저에게 권한 부여하기
+SQL> grant create session to java;
+
+C:\Users\user>sqlplus java/1234
+
+SQL> create table member(
+  2  name varchar(20)
+  3  , pwd varchar(20)
+  4  );
