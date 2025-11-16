@@ -2,7 +2,9 @@ package boj11403;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -27,6 +29,36 @@ public class Main {
                 if(Integer.parseInt(st.nextToken()) == 1) {
                     list[i].add(j);
                 }
+            }
+        }
+
+        for(int i = 0; i < size; i++) {
+            bfs(i);
+        }
+
+        for(int i = 0; i < size; i++) {
+            for(int j = 0; j < size; j++) {
+                System.out.print(graph[i][j]);
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void bfs(int listIndex) {
+        Queue<Integer> q = new ArrayDeque<>();
+
+        q.offer(listIndex);
+        boolean[] isVisited = new boolean[size];
+
+        while(!q.isEmpty()) {
+            int cur = q.poll();
+
+            for(int e : list[cur]) {
+                if(isVisited[e]) continue;
+                isVisited[e] = true;
+                q.offer(e);
+                graph[listIndex][e] = 1;
             }
         }
     }
