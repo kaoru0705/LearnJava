@@ -46,4 +46,22 @@ ctrl f11 run
 
 https://daftcoder.tistory.com/entry/Eclipse-%EC%9D%B4%ED%81%B4%EB%A6%BD%EC%8A%A4-%EC%BD%94%EB%93%9C-%EB%8B%A8%EC%B6%95%ED%82%A4-%EC%97%86%EC%9D%B4-%EC%9E%90%EB%8F%99%EC%99%84%EC%84%B1-%EA%B8%B0%EB%8A%A5-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
 
-sts Spring Tools for Eclipse window 다운
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+안 하기로 함
+https://spring.io/tools
+Spring Tools for Eclipse window 다운
+C:\DevTools 에 넣음
+exe실행 javaeeworkspace 선택해서 거기다 넣음
+window- show view other - server open
+new server tomcat 9.0
+C:\apache-tomcat-9.0.112
+installed jre jdk 8로 변경
+help - check for updates
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+eclipse 설치
+java ee로 열었다
+오른쪽 상단 java 추가 탭을 자바랑 ee둘다 사용
+dynamic web project
+project name site1118 -> 그냥 오늘 날짜
+dynamic  web module version 3.1
