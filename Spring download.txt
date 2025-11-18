@@ -1,2 +1,41 @@
 Spring download
 Spring Boot Extension Pack
+
+javaSE
+
+javaEE(웹개발)
+javaSE 포함 + 웹기술
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+jdk
+https://adoptium.net/temurin/releases?version=8&os=any&arch=any
+Temurin 8.0.472+8 - 10/30/2025 zip down
+jdk8로 폴더이름바꿈
+C:\jdk8
+시스템 환경변수편집 Path - C:\jdk8\bin 이걸 맨위로 올리기
+cmd - java -version openjdk version "1.8.0_472"
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+http://apache.org : 아파치 재단, (copyleft copyright에 반대 뭐든지 무료로 제공 hadoop 등 만듦)
+https://projects.apache.org/projects.html
+-> apache tomcat
+https://tomcat.apache.org/download-90.cgi
+64-bit Windows zip
+
+C:\apache-tomcat-9.0.112\bin>startup.bat 이걸 실행해도 밑에처럼 나온다.
+Neither the JAVA_HOME nor the JRE_HOME environment variable is defined
+
+시스템 변수에 새로만들기로
+JAVA_HOME C:\jdk8를 만들고
+path에 C:\jdk8\bin 없애고 %JAVA_HOME%\bin 추가 -> 환경변수는 %로 감싸기
+cmd
+C:\Users\user>echo %JAVA_HOME%
+C:\jdk8로 잡힘
+
+C:\apache-tomcat-9.0.112\bin > startup
+
+톰켓 설치 및 가동 후 기본적으로 운영되는 웹사이트 보기
+http://localhost:8080 oracle도 8080이라 oracle이 먼저 열린다.
+
+C:\apache-tomcat-9.0.112\conf 여기의 server.xml을 메모장으로 편집하고
+<Connector port="8080" protocol="HTTP/1.1" 이걸 7979로 바꿔라
+startup하고 localhost:7979를 들어가서 고양이가 나오면 성공
