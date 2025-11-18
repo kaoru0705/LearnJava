@@ -12,7 +12,6 @@ https://adoptium.net/temurin/releases?version=8&os=any&arch=any
 Temurin 8.0.472+8 - 10/30/2025 zip down
 jdk8로 폴더이름바꿈
 C:\jdk8
-시스템 환경변수편집 Path - C:\jdk8\bin 이걸 맨위로 올리기
 cmd - java -version openjdk version "1.8.0_472"
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 http://apache.org : 아파치 재단, (copyleft copyright에 반대 뭐든지 무료로 제공 hadoop 등 만듦)
