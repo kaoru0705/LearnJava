@@ -39,3 +39,4 @@ http://localhost:8080 oracle도 8080이라 oracle이 먼저 열린다.
 C:\apache-tomcat-9.0.112\conf 여기의 server.xml을 메모장으로 편집하고
 <Connector port="8080" protocol="HTTP/1.1" 이걸 7979로 바꿔라
 startup하고 localhost:7979를 들어가서 고양이가 나오면 성공
+classpath C:\Workspace\javaee_workspace\mysite\WEB-INF\lib\servlet-api.jar

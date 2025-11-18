@@ -1,0 +1,56 @@
+https://dev.mysql.com/downloads/mysql/
+8.0.44.msi 설치돼있네
+
+8.0.44 zip
+mysql8로 이름바꿔서 c로 옮김
+
+C:\mysql8
+data 폴더 만들기
+
+-------------------------------------------------------------------------------
+C:\mysql8\bin>mysqld --initialize --basedir="c:/mysql8" --datadir="c:/mysql8/data"
+C:\mysql8\bin>mysql -u root -p
+Enter password: 여기서 적어도 실패한다.
+
+C:\mysql8\data WIN-L0G6I5JLGR0.err 이걸 메모장으로 열기 여기 뒤가 비밀번호
+A temporary password is generated for root@localhost: w_Wrty.m?3sA
+
+가동하기
+C:\mysql8\bin>mysqld --console
+-------------------------------------------------------------------------------------------
+
+환경변수 path에서 C:\mysql8\bin 추가하기
+새로운 cmd 열기
+C:\Users\user>mysql -h localhost -u root -p
+Enter password: w_Wrty.m?3sA
+
+------------------------------------------------------------------------------------------------
+[root로 접속한 후 비번 변경]
+mysql> ALTER USER 'root'@'localhost' identified with mysql_native_password by '1234';
+MySQL이 메모리에 유지하고 있는 계정/권한 정보를 다시 읽어오도록 강제로 새로고침하는 명령 flush privileges;
+mysql> flush privileges;
+mysql> exit
+Bye
+-----------------------------------------------------------------------------------------------------
+mysql> show databases;
+mysql> use mysql;
+mysql> select user, host from user;
+
+servlet으로 유저 이름을 짓고 %를 붙이면 외부 접속이 가능
+mysql> create user 'servlet'@'%' identified by '1234';
+mysql> create database java;
+mysql> grant all privileges on java.* to 'servlet'@'%' with grant option;
+mysql> flush privileges;
+---------------------------------------------------------------------------------------------------------
+mysql -u servlet -p
+mysql> use java;
+mysql> create table member(
+    -> member_id int primary key auto_increment
+    -> , id varchar(20)
+    -> , pw varchar(64)
+    -> , name varchar(20)
+    -> , regdate timestamp default now()
+    -> );
+
+
+---------------------------------------------------------------------------------------------
