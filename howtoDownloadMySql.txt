@@ -70,3 +70,10 @@ zip 8.0.33 platform independent
 https://downloads.mysql.com/archives/c-j/
 
 압축 풀고 eclipse에서 .jar를 WEB-INF-lib-안에 넣기
+
+----------------------------------------------------------------------------------------------
+mysql> show databases;
+mysql> use java;
+mysql> show tables;
+member에 대해 설명해줘
+mysql> desc member;
