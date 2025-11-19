@@ -82,5 +82,10 @@ SQL> create sequence seq_member
 
 select table_name from user_tables;
 desc member;
+---------------------------------------------------------------------------------------------------
+C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib
+ojdbc6.jar
+eclipse에서 .jar를 WEB-INF-lib-안에 넣기
+
 ----------------------------------------------------------------------------------------
 
