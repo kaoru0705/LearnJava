@@ -54,3 +54,19 @@ mysql> create table member(
 
 
 ---------------------------------------------------------------------------------------------
+
+mysql -h localhost -u servlet
+-h: host 127.0.0.1과도 같다.
+-u: user
+---------------------------------------------------------------------------------------------
+jdbc driver 다운
+둘 중 한 곳에서 다운로드
+
+전세계적 무료 저장소
+maven repository
+jar 다운
+https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.33
+zip 8.0.33 platform independent
+https://downloads.mysql.com/archives/c-j/
+
+압축 풀고 eclipse에서 .jar를 WEB-INF-lib-안에 넣기
