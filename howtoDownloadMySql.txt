@@ -45,7 +45,7 @@ mysql> use java;
 mysql> create table member(
     -> member_id int primary key auto_increment
     -> , id varchar(20)
-    -> , pw varchar(64)
+    -> , pwd varchar(64)
     -> , name varchar(20)
     -> , regdate timestamp default now()
     -> );

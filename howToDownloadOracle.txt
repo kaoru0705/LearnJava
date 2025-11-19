@@ -2,10 +2,6 @@ oracle
 https://blog.naver.com/zino1187
 password 1234
 
-8.0.44
-https://dev.mysql.com/downloads/mysql/
-installer
-
 custom
 Development Components - Unavailable
 
@@ -53,7 +49,7 @@ SQL> create table member(
   4  );
 
 --------------------------------------------------------------------------------------
-
+/ -> run 이랑 같다.
 create tablespace javaspace
 datafile 'C:\oraclexe\app\oracle\oradata\XE\javaspace.dbf' size 5M
 /
@@ -67,13 +63,15 @@ grant create table, create session, create sequence to servlet;
 ------------------------------------------------------------------------------------------
 sqlplus servlet/1234
 
-  1  create table member(
-  2     member_id number primary key
-  3     , id varchar2(20)
-  4     , pwd varchar2(64)
-  5     , name varchar2(20)
-  6     , regdate date default sysdate
-  7* 
+SQL> create table member(
+  2  member_id number primary key
+  3  , id varchar2(20)
+  4  , pwd varchar2(64)
+  5  , name varchar2(20)
+  6  , regdate date default sysdate
+  7  )
+  8  /
+
 
 SQL> create sequence seq_member
   2  start with 1
