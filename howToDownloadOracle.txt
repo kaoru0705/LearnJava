@@ -88,4 +88,21 @@ ojdbc6.jar
 eclipse에서 .jar를 WEB-INF-lib-안에 넣기
 
 ----------------------------------------------------------------------------------------
+SQL> create sequence seg_member
+  2  increment by 1
+  3  start with 1;
 
+Sequence created.
+
+SQL> insert into member(member_id, id, pwd, name)
+  2  values(seq_member.nextval, 'scott', '1234', '스캇');
+
+1 row created.
+
+SQL> insert into member(member_id, id, pwd, name)
+  2  values(seq_member.nextval, 'adams', '1234', '아담스');
+
+-------------------------------------------------------
+걍 dbvear 에서 추가함 database XE
+ALTER TABLE MEMBER
+ADD email varchar2(30);
