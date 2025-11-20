@@ -1,6 +1,4 @@
 https://dev.mysql.com/downloads/mysql/
-8.0.44.msi 설치돼있네
-
 8.0.44 zip
 mysql8로 이름바꿔서 c로 옮김
 
@@ -12,7 +10,7 @@ C:\mysql8\bin>mysqld --initialize --basedir="c:/mysql8" --datadir="c:/mysql8/dat
 C:\mysql8\bin>mysql -u root -p
 Enter password: 여기서 적어도 실패한다.
 
-C:\mysql8\data WIN-L0G6I5JLGR0.err 이걸 메모장으로 열기 여기 뒤가 비밀번호
+C:\mysql8\ .err 이걸 메모장으로 열기 여기 뒤가 비밀번호
 A temporary password is generated for root@localhost: w_Wrty.m?3sA
 
 가동하기
@@ -47,7 +45,7 @@ mysql> use java;
 mysql> create table member(
     -> member_id int primary key auto_increment
     -> , id varchar(20)
-    -> , pw varchar(64)
+    -> , pwd varchar(64)
     -> , name varchar(20)
     -> , regdate timestamp default now()
     -> );
