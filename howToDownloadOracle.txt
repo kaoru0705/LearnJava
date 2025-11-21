@@ -104,3 +104,13 @@ SQL> insert into member(member_id, id, pwd, name)
 걍 dbvear 에서 추가함 database XE
 ALTER TABLE MEMBER
 ADD email varchar2(30);
+----------------------------------------------------------------------
+CREATE TABLE gallery(
+	gallery_id NUMBER PRIMARY KEY
+	, title varchar2(30)
+	, filename varchar2(20)
+);
+
+CREATE SEQUENCE seq_gallery
+INCREMENT BY 1
+START WITH 1;
