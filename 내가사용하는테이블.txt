@@ -1,0 +1,18 @@
+sqlplus myjava/1234
+myspace.dbf 10M
+USER is "MYJAVA"
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------------------------------------
+MEMBER
+
+SQL> desc member;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MEMBER_ID                                 NOT NULL NUMBER
+ EMAIL                                     NOT NULL VARCHAR2(20)
+ PASSWORD                                  NOT NULL VARCHAR2(64)
+ NICKNAME                                  NOT NULL VARCHAR2(20)
+ PHONE                                              VARCHAR2(20)
+ CREATED_AT                                         DATE
