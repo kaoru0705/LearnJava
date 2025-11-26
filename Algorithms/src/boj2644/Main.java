@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
 public class Main {
     private static ArrayList<Integer>[] relativeList;
     private static boolean[] isVisited;
+    private static int[] relativeCount;
     public static void main(String[] args) throws Exception{
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
@@ -18,14 +19,16 @@ public class Main {
         int nCount = Integer.parseInt(st.nextToken());
         relativeList = new ArrayList[nCount + 1];
         isVisited = new boolean[nCount + 1];
-
+        relativeCount = new int[nCount + 1];
+        
         for(int i = 1; i < nCount + 1; i++) {
             relativeList[i] = new ArrayList<>();
         }
-
+        
         st = new StringTokenizer(br.readLine());
         int targetN1 = Integer.parseInt(st.nextToken());
         int targetN2 = Integer.parseInt(st.nextToken());
+        relativeCount[targetN2] = -1;
 
         st = new StringTokenizer(br.readLine());
         int m = Integer.parseInt(st.nextToken());
@@ -39,12 +42,11 @@ public class Main {
             relativeList[n2].add(n1);
         }
 
-        int eCount = bfs(targetN1, targetN2);
-        System.out.println(eCount);
+        bfs(targetN1, targetN2);
+        System.out.println(relativeCount[targetN2]);
     }
 
-    private static int bfs(int targetN1, int targetN2) {
-        int eCount = 0;
+    private static void bfs(int targetN1, int targetN2) {
         Queue<Integer> q = new ArrayDeque<>();
 
         q.offer(targetN1);
@@ -53,16 +55,13 @@ public class Main {
             int curN = q.poll();
             for(int n : relativeList[curN]) {
                 if(isVisited[n]) continue;
+                relativeCount[n] = relativeCount[curN] + 1;
                 q.offer(n);
                 isVisited[n] = true;
                 if(n == targetN2) {
-                    eCount++;
-                    return eCount;
+                    relativeCount[n] = relativeCount[curN] + 1;
                 }
             }
-            eCount++;
         }
-
-        return -1;
     }
 }
