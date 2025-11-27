@@ -21,33 +21,29 @@ public class Main {
 
     private static int bfs(int start, int end) {
         int routeCount = 1;
-        Queue<Integer> q = new ArrayDeque<>();
+        Queue<Long> q = new ArrayDeque<>();
 
-        q.offer(start);
+        q.offer((long)start);
         while(!q.isEmpty()) {
             routeCount++;
             int size = q.size();
             for(int i = 0; i < size; i++) {
-                int position = q.poll();
+                long position = q.poll();
                 long twicePosition = position * 2;
                 long appendOnePosition = position * 10 + 1;
-                
-                
+
                 if(appendOnePosition == end || twicePosition == end) {
                     return routeCount;
                 }
                 if(twicePosition < end) {
-                    q.offer((int)twicePosition);
+                    q.offer(twicePosition);
                 }
                 if(appendOnePosition < end) {
-                    q.offer((int)appendOnePosition);
+                    q.offer(appendOnePosition);
                 }
-                
-                if(twicePosition > end && appendOnePosition > end)
-                    return -1;
             }
         }
 
-        return routeCount;
+        return -1;
     }
 }
