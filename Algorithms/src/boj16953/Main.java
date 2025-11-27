@@ -16,10 +16,11 @@ public class Main {
         int end = Integer.parseInt(st.nextToken());
 
         int routeCount = bfs(start, end);
+        System.out.println(routeCount);
     }
 
     private static int bfs(int start, int end) {
-        int routeCount = 0;
+        int routeCount = 1;
         Queue<Integer> q = new ArrayDeque<>();
 
         q.offer(start);
@@ -28,17 +29,22 @@ public class Main {
             int size = q.size();
             for(int i = 0; i < size; i++) {
                 int position = q.poll();
-                int twicePosition = position * 2;
-                int addOnePosition = position * 10 + 1;
-                if(addOnePosition == end || twicePosition == end) {
+                long twicePosition = position * 2;
+                long appendOnePosition = position * 10 + 1;
+                
+                
+                if(appendOnePosition == end || twicePosition == end) {
                     return routeCount;
                 }
                 if(twicePosition < end) {
-                    q.offer(twicePosition);
+                    q.offer((int)twicePosition);
                 }
-                if(addOnePosition < end) {
-                    q.offer(addOnePosition);
+                if(appendOnePosition < end) {
+                    q.offer((int)appendOnePosition);
                 }
+                
+                if(twicePosition > end && appendOnePosition > end)
+                    return -1;
             }
         }
 
