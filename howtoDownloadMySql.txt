@@ -70,6 +70,7 @@ https://downloads.mysql.com/archives/c-j/
 압축 풀고 eclipse에서 .jar를 WEB-INF-lib-안에 넣기
 
 ----------------------------------------------------------------------------------------------
+mysql> select user, host from user;
 mysql> show databases;
 mysql> use java;
 mysql> show tables;
