@@ -1,0 +1,22 @@
+스프링의 요청 처리 흐름
+client 브라우저 요청 ------------> DispatcherServlet -> (servlet-mapping.txt 기존 방식)
+				/board/list
+DispatcherServlet -> HandlerMapping (형님 대신 동생을 찾아주는 객체)
+		- SimpleurlHandlerMapping
+		- BeanNameUrlHandlerMapping
+		- DefaultAnnotationHandlerMapping
+		- RequestMappinghandlerMapping(보통 이걸 씀) -> @Configuration java config(@Bean @Bean.....) -> DispatcherServlet 			------------>					Controller
+												servlet-mapping.txt 대신							HandlerAdapter(동생 컨트롤러 실행)
+
+Controller
+public void getList() {
+	3단계 - 일시키기
+	4단계 - 결과 저장 -> Model 객체에 ( 그게 request에 자동저장)
+				
+
+	return ModelAndView 반환			---------------> 		DispatcherServlet		---------> 		ViewResolver에게 해석 맡김		---------------> DispatcherServlet -> View에다 객체 Model 심기 ------->
+								ModelAndView															View
+}					(예로들어 board/list 알맹이만 넘김 dispatcherservlet은 몰라서 해석 맡김)
+
+
+View html 렌더링	 ------------> tomcat이 응답을 브라우저에 함 이후 네트워크 끊고 종료
